@@ -1,20 +1,40 @@
-<div className="header">
-      <div>
-         <!-- <img src={logo} className="header__logo" alt={logo} />
-        <Avatar className="header__logo"
-            sx={{ width: 68, height: 68 }}
-            src={logo}
-            aria-label="recipe"
-          ></Avatar> -->
-      </div>
-      <div className="header__name">
-        <h1> Café Bar Santa Ana</h1>
-         <img src={text} className="header__text" alt={text} /> 
-        <p>
-          c/Santa Ana&nbsp;-Plasencia
-        </p>
-      </div>
-      <div className="header__i18n">
-        
-      </div>
-    </div>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="assets/logo.jpg" width="70" height="50" alt="" />&nbsp;<span
+      class="text-warning"
+      >HOME</span>
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/list">GASTOS</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/anadir">INGRESOS</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://shopping.mattel.com/es-es/collections/regalos-semana-santa?icid=HW%7CSingleBrand%7CProduct%7CConsumer%7CHWEaster%7C2.27-4.9%7CShopNow%7CHotWheelsCarsandTracksets%7CMattel%7CPLP#filter.vendor=Hot%20Wheels"
+          target="_blank"
+          >TAREAS</a
+        >
+      </li>
+      <!-- <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="search">Buscar</a>
+      </li> -->
+    </ul>
+  </div>
+</nav>

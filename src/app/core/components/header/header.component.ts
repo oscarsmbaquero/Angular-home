@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  isCollapse = true;
+  toggleState() {
+    let foo = this.isCollapse
+    this.isCollapse = foo === false ? true : false;
+  }
+  loggedIn = false;
+  loggedUser:any = null;
+
+  logout(){
+    //this.autorizacionService.logout()
+  }
 
 }
