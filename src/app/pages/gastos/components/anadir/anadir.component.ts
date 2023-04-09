@@ -1,3 +1,4 @@
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { IGasto } from '../../../../core/models/gasto.models'
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -36,7 +37,7 @@ constructor(
      this.registerGasto = this.formBuilder.group({
        descripcion: ['', [Validators.required, Validators.maxLength(20)]],
        importe: ['', [Validators.required, Validators.maxLength(20)]],
-       fecha: ['', [Validators.required, Validators.maxLength(4)]],
+       fecha: ['', [Validators.required]],
        tipo: ['', [Validators.required]],
        //image: ['', [Validators.required]],
      });
@@ -48,7 +49,7 @@ constructor(
     // Si el formulario es valido
     if (this.registerGasto.valid) {
       // Creamos un Usuario y lo emitimos
-      const car: IGasto = {
+      const gasto: IGasto = {
         
         descripcion: this.registerGasto.get('descripcion')?.value,
         importe: this.registerGasto.get('importe')?.value,
@@ -56,8 +57,8 @@ constructor(
         tipo: this.registerGasto.get('tipo')?.value,
         //image: this.registerCar.get('image')?.value,
         //  type: this.registerCar.get('type')?.value,
+       
       };
-      console.log(car);
     //   this.carsservice.addCars(car).subscribe(
     //    (response) => {
     //      console.log('Datos enviados con éxito');

@@ -2,7 +2,7 @@
 export interface IGasto{
     descripcion: string;
     importe: number;
-    fecha: string;
+    fecha: Date;
     tipo: TypeGasto;
 }
  export enum TypeGasto {
