@@ -55,22 +55,11 @@ constructor(
         
         descripcion: this.registerGasto.get('descripcion')?.value,
         importe: this.registerGasto.get('importe')?.value,
-        fecha: this.registerGasto.get('fecha')?.value,
+        fecha: this.registerGasto.get('fecha')?.value.toISOString().substring(0, 10),
         tipo: this.registerGasto.get('tipo')?.value,
-        //image: this.registerCar.get('image')?.value,
-        //  type: this.registerCar.get('type')?.value,
        
       };
-      console.log(gasto.fecha);
-      console.log(gasto.fecha.toISOString().substring(0, 10));
-    //   this.carsservice.addCars(car).subscribe(
-    //    (response) => {
-    //      console.log('Datos enviados con éxito');
-    //    },
-    //    (error) => {
-    //      console.error('Error al enviar los datos', error);
-    //    }
-    //  );
+      console.log(gasto);
    }
    this.router.navigate(['gastos']);
    }
