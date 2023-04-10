@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 import { AnadirComponent } from './components/anadir/anadir.component';
 import { MostrarComponent } from './components/mostrar/mostrar.component';
@@ -44,8 +45,12 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
-
-  ]
+  ],
+  providers: [
+    {
+      provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+      useValue: { useUtc: true }
+    }
+  ],
 })
 export class GastosModule { }
