@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 
 
 import { GastosComponent } from './gastos.component';
@@ -15,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AnadirComponent } from './components/anadir/anadir.component';
 import { MostrarComponent } from './components/mostrar/mostrar.component';
@@ -30,6 +32,7 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
   imports: [  
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     GastosRoutingModule,
     RouterModule,
     MatTabsModule,
@@ -39,7 +42,9 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
     MatButtonModule,
     MatSelectModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+
 
   ]
 })

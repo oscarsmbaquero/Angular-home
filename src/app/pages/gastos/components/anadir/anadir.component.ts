@@ -1,5 +1,6 @@
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { IGasto } from '../../../../core/models/gasto.models'
+import { IGasto } from '../../../../core/models/gasto.models';
+import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -31,13 +32,14 @@ public submitted: boolean = false;
 constructor(
   private formBuilder: FormBuilder,
   private router: Router,
+  
   ) {
     // Nuestro formulario - sin campos por defecto
     // Podemos meter valores por defecto en las comillas
      this.registerGasto = this.formBuilder.group({
        descripcion: ['', [Validators.required, Validators.maxLength(20)]],
        importe: ['', [Validators.required, Validators.maxLength(20)]],
-       fecha: ['', [Validators.required]],
+       fecha: [''],
        tipo: ['', [Validators.required]],
        //image: ['', [Validators.required]],
      });
@@ -59,6 +61,8 @@ constructor(
         //  type: this.registerCar.get('type')?.value,
        
       };
+      console.log(gasto.fecha);
+      console.log(gasto.fecha.toISOString().substring(0, 10));
     //   this.carsservice.addCars(car).subscribe(
     //    (response) => {
     //      console.log('Datos enviados con éxito');

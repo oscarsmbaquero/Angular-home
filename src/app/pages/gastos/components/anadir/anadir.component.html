@@ -27,12 +27,17 @@
               El importe es requerido.
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <!-- <mat-form-field appearance="fill">
             <mat-label>Fecha:</mat-label>
             <input matInput formControlName="fecha" />
             <mat-error *ngIf="registerGasto.get('fecha')?.invalid">
               Obligatorio y max. 4 dígitos.
             </mat-error>
+          </mat-form-field> -->
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Tipo de Gasto</mat-label>
