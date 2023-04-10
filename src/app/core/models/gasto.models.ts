@@ -9,6 +9,7 @@ export interface IGasto{
     "personal" = "personal",
     "casa"= "casa",
     "moto"= "moto",
+    "otro"= "otro",
 }
 export const TypeOfGasto = Object.values(TypeGasto);
 // export interface ISong{

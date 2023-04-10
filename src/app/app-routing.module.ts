@@ -13,6 +13,10 @@ const routes: Routes = [
     path: "gastos",
     loadChildren: () => import('src/app/pages/gastos/gastos.module').then(m => m.GastosModule)
    },
+   {
+    path: "ingresos",
+    loadChildren: () => import('src/app/pages/ingresos/ingresos.module').then(m => m.IngresosModule)
+   },
 ];
 
 @NgModule({

@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto text-center">
+        <mat-card>
+          <mat-card-content>
+            <img
+              src="../../../../../assets/logo.jpg"
+              width="130"
+              height="90"
+              alt=""
+              style="margin-left: 1px"
+            />
+            <form novalidate (ngSubmit)="onSubmit()" [formGroup]="registerIngreso">
+              <mat-form-field class="datepicker-field" appearance="fill">
+                <mat-label>Descripcion:</mat-label>
+                <input matInput formControlName="descripcion" />
+                <mat-error *ngIf="registerIngreso.get('descripcion')?.invalid">
+                  Descripcion obligatoria
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="datepicker-field">
+                <mat-label>Importe:</mat-label>
+                <input matInput formControlName="importe" />
+                <mat-error *ngIf="registerIngreso.get('importe')?.invalid">
+                  El importe es requerido.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="datepicker-field">
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  placeholder="Fecha"
+                  formControlName="fecha"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="datepicker-field">
+                <mat-label>Tipo de Ingreso</mat-label>
+                <mat-select disableRipple formControlName="tipo">
+                  <mat-option value="trabajo">Trabajo</mat-option>
+                  <mat-option value="otro">Otro</mat-option>
+                 
+                </mat-select>
+              </mat-form-field>
+              <mat-card-content>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="!registerIngreso.valid"
+                >
+                  Enviar
+                </button>
+              </mat-card-content>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
