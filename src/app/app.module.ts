@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 //Moment 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -27,7 +28,8 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     NgbModule,
     MaterialModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    HttpClientModule
     
   ],
   providers: [
