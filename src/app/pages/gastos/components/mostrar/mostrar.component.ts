@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+
+import { Component, Input, OnInit } from '@angular/core';
+import { IGasto } from '../../../../core/models/gasto.models';
 
 export interface PeriodicElement {
   descripcion: string;
@@ -20,12 +22,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { id: 10, descripcion: 'Neon', importe: 20.1797, fecha: 'Ne' },
 ];
 
+/**
+ * 
+ */
+
 @Component({
   selector: 'app-mostrar',
   templateUrl: './mostrar.component.html',
   styleUrls: ['./mostrar.component.css'],
 })
-export class MostrarComponent {
+
+
+export class MostrarComponent implements OnInit{
+
+  @Input() gastos:IGasto[] = [];
+  
+  ngOnInit(): void {
+    console.log(this.gastos, 41);
+  }
   displayedColumns: string[] = ['id', 'descripcion', 'importe', 'fecha'];
-  dataSource = ELEMENT_DATA;
+  data = ELEMENT_DATA;
+ 
+  
 }

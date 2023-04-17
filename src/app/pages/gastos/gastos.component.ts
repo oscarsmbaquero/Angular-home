@@ -12,17 +12,18 @@ export class GastosComponent {
   public  gastos: IGasto[] = [];
 
   ngOnInit(): void {
-    console.log(this.getCars(),15);//lanzo la función al iniciar) 
+   this.getGastos();
   }
 
   constructor(private gastosService: GastosService) {
     
   }
-  private getCars() {
+  private getGastos() {
     this.gastosService.getGastos().subscribe((gastos) => {
       this.gastos = gastos;
+      console.log(this.gastos,18);
     });
-    console.log(this.gastos,18);
+   
   }
  
  

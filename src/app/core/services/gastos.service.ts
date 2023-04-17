@@ -12,9 +12,12 @@ export class GastosService implements OnInit{
 
   constructor(private httpClient: HttpClient) { }
   
-  ngOnInit(): void {
-    console.log(this.getGastos(), 18);
+  ngOnInit() {
+    this.httpClient.get('https://node-home-oscarsmbaquero.vercel.app/gastos').subscribe(data => {
+      console.log(data,17);
+    });
   }
+  
 
   public getGastos():Observable<IGasto[]> {
     return this.httpClient.get<IGasto[]>(`${environment.apiUrl}gastos`);
