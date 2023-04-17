@@ -1,4 +1,4 @@
-import { IGasto } from '../models/gasto.models';
+import { IGasto } from '../models/gastos.models';
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';

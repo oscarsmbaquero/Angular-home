@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IGasto } from '../../../../core/services/models/gastos.models';
 
 export interface PeriodicElement {
   descripcion: string;
@@ -26,6 +27,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./mostrar.component.css'],
 })
 export class MostrarComponent {
+  @Input() ingresos:IGasto[] = [];
+  
   displayedColumns: string[] = ['id', 'descripcion', 'importe', 'fecha'];
   dataSource = ELEMENT_DATA;
 }

@@ -1,5 +1,5 @@
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { Iingreso } from '../../../../core/models/ingreso.models';
+import { Iingreso } from '../../../../core/services/models/ingreso.models';
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

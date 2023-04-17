@@ -1,26 +1,29 @@
 
 import { Component, Input, OnInit } from '@angular/core';
-import { IGasto } from '../../../../core/models/gasto.models';
+import { IGasto } from '../../../../core/services/models/gastos.models';
+import { GastosService } from '../../../../core/services/gastos/gastos.service';
+import { DatePipe } from '@angular/common';
 
-export interface PeriodicElement {
-  descripcion: string;
-  id: number;
-  importe: number;
-  fecha: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 1, descripcion: 'Hydrogen', importe: 1.0079, fecha: 'H' },
-  { id: 2, descripcion: 'Helium', importe: 4.0026, fecha: 'He' },
-  { id: 3, descripcion: 'Lithium', importe: 6.941, fecha: 'Li' },
-  { id: 4, descripcion: 'Beryllium', importe: 9.0122, fecha: 'Be' },
-  { id: 5, descripcion: 'Boron', importe: 10.811, fecha: 'B' },
-  { id: 6, descripcion: 'Carbon', importe: 12.0107, fecha: 'C' },
-  { id: 7, descripcion: 'Nitrogen', importe: 14.0067, fecha: 'N' },
-  { id: 8, descripcion: 'Oxygen', importe: 15.9994, fecha: 'O' },
-  { id: 9, descripcion: 'Fluorine', importe: 18.9984, fecha: 'F' },
-  { id: 10, descripcion: 'Neon', importe: 20.1797, fecha: 'Ne' },
-];
+// export interface PeriodicElement {
+//   descripcion: string;
+//   id: number;
+//   importe: number;
+//   fecha: string;
+// }
+
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   { id: 1, descripcion: 'Hydrogen', importe: 1.0079, fecha: 'H' },
+//   { id: 2, descripcion: 'Helium', importe: 4.0026, fecha: 'He' },
+//   { id: 3, descripcion: 'Lithium', importe: 6.941, fecha: 'Li' },
+//   { id: 4, descripcion: 'Beryllium', importe: 9.0122, fecha: 'Be' },
+//   { id: 5, descripcion: 'Boron', importe: 10.811, fecha: 'B' },
+//   { id: 6, descripcion: 'Carbon', importe: 12.0107, fecha: 'C' },
+//   { id: 7, descripcion: 'Nitrogen', importe: 14.0067, fecha: 'N' },
+//   { id: 8, descripcion: 'Oxygen', importe: 15.9994, fecha: 'O' },
+//   { id: 9, descripcion: 'Fluorine', importe: 18.9984, fecha: 'F' },
+//   { id: 10, descripcion: 'Neon', importe: 20.1797, fecha: 'Ne' },
+//];
 
 /**
  * 
@@ -35,13 +38,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class MostrarComponent implements OnInit{
 
+  /**
+   * recibo los gastos desde el componente padre
+   */
   @Input() gastos:IGasto[] = [];
   
   ngOnInit(): void {
-    console.log(this.gastos, 41);
+    // console.log(this.gastos, 41);
   }
-  displayedColumns: string[] = ['id', 'descripcion', 'importe', 'fecha'];
-  data = ELEMENT_DATA;
- 
+  constructor(
+    
+    private datePipe: DatePipe
+    ) {
+    
+  }
+  displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha'];
+ // data = ELEMENT_DATA;
+ formatDate(date: Date): string {
+  return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
+}
   
 }

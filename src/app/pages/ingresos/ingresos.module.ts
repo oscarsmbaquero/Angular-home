@@ -6,7 +6,7 @@ import { IngresosRoutingModule } from './ingresos-routing.module';
 import { IngresosComponent } from './ingresos.component';
 import { AnadirComponent } from './components/anadir/anadir.component';
 import { MostrarComponent } from './components/mostrar/mostrar.component';
-
+import { DatePipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,6 +39,13 @@ import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mate
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
-  ]
+  ],
+   providers: [
+    {
+      provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+      useValue: { useUtc: true }
+    },
+    DatePipe
+  ],
 })
 export class IngresosModule { }

@@ -1,5 +1,6 @@
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { IGasto } from '../../../../core/models/gasto.models';
+import { IGasto } from '../../../../core/services/models/gastos.models';
+import { GastosService } from '../../../../core/services/gastos/gastos.service';
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,6 +33,7 @@ public submitted: boolean = false;
 constructor(
   private formBuilder: FormBuilder,
   private router: Router,
+  private gastosService: GastosService,
   
   ) {
     // Nuestro formulario - sin campos por defecto
@@ -60,12 +62,17 @@ constructor(
        
       };
       console.log(gasto);
-   }
-   this.router.navigate(['gastos']);
-   }
-      // Reseteamos todos los campos y el indicador de envío o submitted
-     //  this.registerCar.reset();
-     //  this.submitted = false;
+      this.gastosService.addGasto(gasto).subscribe(
+        (response) => {
+          console.log('Datos enviados con éxito');
+          this.router.navigate(['gastos']);
+        },
+        (error) => {
+          console.error('Error al enviar los datos', error);
+        }
+      );
+    }
+    
     }
 
-
+  }

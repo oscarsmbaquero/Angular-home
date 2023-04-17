@@ -7,6 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { GastosComponent } from './gastos.component';
 import { GastosRoutingModule } from './gastos-routing.module';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
@@ -50,7 +51,8 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
     {
       provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
       useValue: { useUtc: true }
-    }
+    },
+    DatePipe
   ],
 })
 export class GastosModule { }

@@ -1,5 +1,5 @@
-import { GastosService } from './../../core/services/gastos.service';
-import { IGasto } from 'src/app/core/models/gasto.models';
+import { GastosService } from './../../core/services/gastos/gastos.service';
+import { IGasto } from '../../core/services/models/gastos.models';
 import { Component } from '@angular/core';
 
 
