@@ -10,6 +10,7 @@ import { GastosRoutingModule } from './gastos-routing.module';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,6 +48,7 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule,
     SharedModule
   ],
   providers: [

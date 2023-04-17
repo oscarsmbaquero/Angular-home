@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-anadir',
@@ -34,6 +35,7 @@ constructor(
   private formBuilder: FormBuilder,
   private router: Router,
   private ingresosService: IngresosService,
+  private snackBar: MatSnackBar
   ) {
     // Nuestro formulario - sin campos por defecto
     // Podemos meter valores por defecto en las comillas
@@ -64,6 +66,9 @@ constructor(
       this.ingresosService.addIngreso(ingreso).subscribe(
         (response) => {
           console.log('Datos enviados con éxito');
+          this.snackBar.open('El gasto ha sifo añadido correctamente', 'Cerrar', {
+            duration: 3000
+          });
           this.router.navigate(['ingresos']);
         },
         (error) => {

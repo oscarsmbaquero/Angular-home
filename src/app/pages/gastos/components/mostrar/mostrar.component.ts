@@ -12,25 +12,33 @@ import { DatePipe } from '@angular/common';
 })
 
 export class MostrarComponent implements OnInit{
-
+ suma:number = 0;
   /**
    * recibo los gastos desde el componente padre
    */
   @Input() gastos:IGasto[] = [];
   
+  
   ngOnInit(): void {
-    // console.log(this.gastos, 41);
+    this.sumaImportes()
   }
   constructor(
     
     private datePipe: DatePipe
-    ) {
+    ) {  }
     
-  }
-  displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha'];
+  displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha','tipo'];
  // data = ELEMENT_DATA;
  formatDate(date: Date): string {
   return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
 }
+sumaImportes(){
+  let suma = 0;
+  for (let i = 0; i < this.gastos.length; i++) {
+    suma += this.gastos[i].importe;
+    console.log(suma,41)
+  }
+this.suma = suma;
   
+}
 }
