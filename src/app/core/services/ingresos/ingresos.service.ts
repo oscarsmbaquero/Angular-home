@@ -13,18 +13,18 @@ export class IngresosService implements OnInit{
   constructor(private httpClient: HttpClient) { }
   
   ngOnInit() {
-    this.httpClient.get('https://node-home-oscarsmbaquero.vercel.app/gastos').subscribe(data => {
-      console.log(data,17);
-    });
+    // this.httpClient.get('https://node-home-oscarsmbaquero.vercel.app/ingresos').subscribe(data => {
+    //   console.log(data,17);
+    // });
   }
 
   public getIngreso():Observable<Iingreso[]> {
-    return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}gastos`);
+    return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`);
   }
 
   public addIngreso(body: Iingreso): Observable<Iingreso> {
     return this.httpClient.post<Iingreso>(
-      `${environment.apiUrl}gastos`,
+      `${environment.apiUrl}ingresos`,
       body
     );
   }

@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mate
     MatTableModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    SharedModule
   ],
    providers: [
     {

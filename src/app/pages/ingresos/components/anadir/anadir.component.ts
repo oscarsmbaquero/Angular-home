@@ -1,5 +1,6 @@
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { Iingreso } from '../../../../core/services/models/ingreso.models';
+import { IngresosService } from '../../../../core/services/ingresos/ingresos.service';
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,7 +33,7 @@ public submitted: boolean = false;
 constructor(
   private formBuilder: FormBuilder,
   private router: Router,
-  
+  private ingresosService: IngresosService,
   ) {
     // Nuestro formulario - sin campos por defecto
     // Podemos meter valores por defecto en las comillas
@@ -60,8 +61,17 @@ constructor(
        
       };
       console.log(ingreso);
+      this.ingresosService.addIngreso(ingreso).subscribe(
+        (response) => {
+          console.log('Datos enviados con éxito');
+          this.router.navigate(['ingresos']);
+        },
+        (error) => {
+          console.log('Error al enviar los datos',error);
+        }
+      );
    }
-   this.router.navigate(['gastos']);
+   
    }
       // Reseteamos todos los campos y el indicador de envío o submitted
      //  this.registerCar.reset();

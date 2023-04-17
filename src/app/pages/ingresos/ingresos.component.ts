@@ -1,6 +1,7 @@
+
 import { Component } from '@angular/core';
-import { GastosService } from './../../core/services/gastos/gastos.service';
-import { IGasto } from 'src/app/core/services/models/gastos.models';
+import { IngresosService } from './../../core/services/ingresos/ingresos.service';
+import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 
 @Component({
   selector: 'app-ingresos',
@@ -8,16 +9,16 @@ import { IGasto } from 'src/app/core/services/models/gastos.models';
   styleUrls: ['./ingresos.component.css']
 })
 export class IngresosComponent {
-  public  ingresos: IGasto[] = [];
+  public  ingresos: Iingreso[] = [];
 
   ngOnInit(): void {
     this.getIngresos();
    }
-   constructor(private gastosService: GastosService) {
+   constructor(private ingresosService: IngresosService) {
     
    }
    private getIngresos() {
-    this.gastosService.getGastos().subscribe((ingresos) => {
+    this.ingresosService.getIngreso().subscribe((ingresos) => {
       this.ingresos = ingresos;
       console.log(this.ingresos,18);
     });
