@@ -32,14 +32,18 @@
   </div>
 </table>
 
-
 <ng-template #loading>
   carfando.......
   <app-loading></app-loading>
 </ng-template>
-<div class="button" *ngIf="suma; else nosuma">
-  <button (click)="sumaImportes()">{{ suma }}</button>
+<div class="button">
+  
+  <div *ngIf="suma; else nosuma">
+    <button mat-raised-button color="primary">{{ suma }}</button>
+    <!-- <button (click)="sumaImportes()">{{ suma }}</button> -->
+  </div>
+  <ng-template #nosuma>
+    <button mat-raised-button color="primary" (click)="sumaImportes()">Total</button>
+    <!-- <button (click)="sumaImportes()">Total</button> -->
+  </ng-template>
 </div>
-<ng-template #nosuma>
-  <button (click)="sumaImportes()">Total</button>
-</ng-template>
