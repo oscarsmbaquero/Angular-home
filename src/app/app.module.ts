@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 //Moment 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -12,7 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { PanelControlComponent } from './core/components/panel-control/panel-control.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule } from '@angular/material/button';//cambiar de sitio
+
 
 import { MaterialModule } from './material.module';
 
@@ -20,16 +24,19 @@ import { MaterialModule } from './material.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PanelControlComponent
   ],
   imports: [
+    CoreModule,
+    MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     MaterialModule,
     MatMomentDateModule,
-    HttpClientModule
+    HttpClientModule,
     
   ],
   providers: [

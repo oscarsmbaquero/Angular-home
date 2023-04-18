@@ -1,0 +1,30 @@
+<div class="panel-container">
+  <div class="panel-item">
+    <button mat-raised-button color="primary" matBadge="3" matBadgePosition="after" matBadgeColor="accent">
+      T.Pendientes
+    </button>
+  </div>
+  <div class="panel-item">
+    <div class="infoI">
+      {{ sumaG | currency : "€" }}
+    </div>
+  </div>
+  <div class="panel-item">
+    <div *ngIf="diferencia; else notDiferencia">
+    <button mat-raised-button color="warn" class="button" (click)="calcularDiferencia()">{{diferencia}}</button>
+  </div>
+  <ng-template #notDiferencia>
+    <button mat-raised-button color="primary" class="button" (click)="calcularDiferencia()">Calcular</button>
+  </ng-template>
+  </div>
+  <div class="panel-item">
+    <div class="info">
+      {{ sumaIngreso | currency : "€" }}
+    </div>
+  </div>
+  <!-- <div class="panel-item">
+    <button mat-raised-button color="warn" matBadge="-" matBadgePosition="after" matMatBadgeSize="small" matBadgeColor="accent">
+      {{sumaG | currency:'€'}} Mes en curso
+    </button>
+  </div> -->
+</div>
