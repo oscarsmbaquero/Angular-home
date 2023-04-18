@@ -1,3 +1,4 @@
+import { IngresosRoutingModule } from './../../ingresos-routing.module';
 import { Component, Input } from '@angular/core';
 import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 import { DatePipe } from '@angular/common';
@@ -28,6 +29,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./mostrar.component.css'],
 })
 export class MostrarComponent {
+
+  suma:number = 0;
   @Input() ingresos:Iingreso[] = [];
   constructor(
     
@@ -40,5 +43,18 @@ export class MostrarComponent {
   //dataSource = ELEMENT_DATA;
   formatDate(date: Date): string {
     return this.datePipe.transform(date, 'dd/MM/yyyy') || '';
+  }
+
+  sumaImportes(){
+    let suma = 0;
+    for (let i = 0; i < this.ingresos.length; i++) {
+      suma += this.ingresos[i].importe;
+      console.log(suma,41)
+    }
+  this.suma = suma;  
+  }
+  
+  resetSuma(){  
+    this.suma = 0;  
   }
 }

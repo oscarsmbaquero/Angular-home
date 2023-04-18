@@ -26,3 +26,11 @@
 <ng-template #loading>
   <app-loading></app-loading> 
 </ng-template>
+<div *ngIf="suma; else nosuma">
+  <button mat-raised-button color="warn" (click)="resetSuma()">{{ suma }} €</button>
+  <!-- <button (click)="sumaImportes()">{{ suma }}</button> -->
+</div>
+<ng-template #nosuma>
+  <button mat-raised-button color="primary" (click)="sumaImportes()">Total</button>
+  <!-- <button (click)="sumaImportes()">Total</button> -->
+</ng-template>
