@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="bg-image">
     <button
+        class="button"
         mat-raised-button
         color="primary"
         matBadge="3"
@@ -8,6 +9,16 @@
         matBadgeColor="accent"
       >
         T.Pendientes
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        matBadge="-"
+        matBadgePosition="after"
+        matMatBadgeSize="small"
+        matBadgeColor="accent"
+      >
+        Mes en curso
       </button>
   <router-outlet></router-outlet>
 </div>

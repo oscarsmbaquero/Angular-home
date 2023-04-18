@@ -38,7 +38,10 @@ sumaImportes(){
     suma += this.gastos[i].importe;
     console.log(suma,41)
   }
-this.suma = suma;
-  
+this.suma = suma;  
+}
+
+resetSuma(){  
+  this.suma = 0;  
 }
 }
