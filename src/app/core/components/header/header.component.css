@@ -29,12 +29,12 @@
   font-weight: bold;
 }
 .navbar-toggler {
-  border-radius: 50%;
+  /* border-radius: 50%; */
   margin: 0 auto;
   border: solid 2px white;
-  align-items: center;
+  /* align-items: center; */
   font-size: 1em;  
-  background-color: white;
+  /* background-color: white; */
 }
 .navbar-toggler:focus,
 .navbar-toggler:hover {

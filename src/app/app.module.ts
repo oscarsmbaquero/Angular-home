@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 //Moment 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -37,6 +38,7 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     MatMomentDateModule,
     HttpClientModule,
+    ModalModule.forRoot()
     
   ],
   providers: [
