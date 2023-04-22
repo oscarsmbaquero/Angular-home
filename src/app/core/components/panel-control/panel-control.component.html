@@ -1,11 +1,22 @@
-<div class="panel-container">
-  <div class="panel-item">
-    <button mat-raised-button color="primary" matBadge="3" matBadgePosition="after" matBadgeColor="accent">
+
+
+<div class="row d-flex justify-content-between">
+  <div class="panel-item d-flex">
+    <button
+      mat-raised-button
+      color="primary"
+      matBadge="3"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+    >
       T.Pendientes
     </button>
-    <button (click)="openModal()">Abrir Modal</button>
-  </div>
-  <div class="panel-item">
+    <div class="panel-itemv d-flex">
+      <button mat-raised-button color="primary" (click)="openModal()">
+        Resumen
+      </button>
+    </div>
+    <!-- <div class="panel-item">
     <div class="infoI">
       {{ sumaG | currency : "€" }}
     </div>
@@ -22,10 +33,11 @@
     <div class="info">
       {{ sumaIngreso | currency : "€" }}
     </div>
-  </div>
-  <!-- <div class="panel-item">
+  </div> -->
+    <!-- <div class="panel-item">
     <button mat-raised-button color="warn" matBadge="-" matBadgePosition="after" matMatBadgeSize="small" matBadgeColor="accent">
       {{sumaG | currency:'€'}} Mes en curso
     </button>
   </div> -->
+  </div>
 </div>

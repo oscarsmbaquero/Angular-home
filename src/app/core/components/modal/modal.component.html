@@ -1,3 +1,25 @@
-<p>modal works!</p>
-<button class="close-button" (click)="closeModal()">X</button>
+<div class="container">
+  <div class="box">
+    <h5><span style="color:azure">Abril:</span></h5>
+    <div class="variable">
+      <h6>
+        <span style="color:azure">Gastos:</span><span style="color: rgb(201, 12, 28)">{{ sumaG }}</span>
+      </h6>
+    </div>
+    <div class="variable">
+      <h6>
+        <span style="color:azure">Ingresos:</span><span style="color: rgb(51, 135, 76)">{{ sumaIngreso }}</span>
+      </h6>
+    </div>
+      <button mat-raised-button color="primary" (click)="calcularDiferencia()">Calcularr</button>
+    <div>
+      <div class="variable">
+        <h6>
+          <span style="color:azure">Dif:</span><span style="color: rgb(51, 135, 76)">{{diferencia}}</span>
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>
 
+<button class="close-button" (click)="closeModal()">X</button>
