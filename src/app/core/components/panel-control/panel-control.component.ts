@@ -4,6 +4,7 @@ import { GastosService } from '../../services/gastos/gastos.service';
 import { IngresosService } from '../../services/ingresos/ingresos.service';
 import { IGasto } from '../../services/models/gastos.models';
 import { Iingreso } from '../../services/models/ingreso.models';
+import { ModalService } from '../../services/modal/modal.service';
 
 @Component({
   selector: 'app-panel-control',
@@ -37,7 +38,8 @@ export class PanelControlComponent  implements OnInit{
 
   constructor(
     private gastosService: GastosService,
-    private ingresosService: IngresosService
+    private ingresosService: IngresosService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +76,9 @@ export class PanelControlComponent  implements OnInit{
       this.diferencia= this.sumaIngreso - this.sumaG
     }
     return this.diferencia;
+  }
+  openModal() {
+    this.modalService.openModal();
   }
 
   // calcularGastoMayor(){

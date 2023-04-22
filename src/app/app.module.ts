@@ -17,6 +17,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
 import { PanelControlComponent } from './core/components/panel-control/panel-control.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';//cambiar de sitio
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { MaterialModule } from './material.module';
@@ -38,10 +39,12 @@ import { MaterialModule } from './material.module';
     MaterialModule,
     MatMomentDateModule,
     HttpClientModule,
+    MatDialogModule,
     ModalModule.forRoot()
     
   ],
   providers: [
+    MatDialogModule,
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, // reemplaza 'es-ES' con tu idioma y país
     {
       provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS,
