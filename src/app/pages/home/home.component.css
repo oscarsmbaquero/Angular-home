@@ -1,0 +1,12 @@
+.home{
+    min-height: 90vh;
+    background-image: url('https://res.cloudinary.com/dcfk8yjwr/image/upload/v1682275659/o_s_bme299.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,.15);
+}

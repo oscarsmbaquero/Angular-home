@@ -50,3 +50,12 @@
     margin-bottom: 10px;
     text-align: center;
   }
+  .diferencia-positiva {
+    color: #00ff00;
+  }
+  .diferencia-negativa {
+    color: #ff0000;
+  }
+
+
+
