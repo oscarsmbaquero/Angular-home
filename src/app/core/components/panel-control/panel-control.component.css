@@ -2,7 +2,7 @@
 .panel-container {
   /* display: flex;
   justify-content: space-between; */
-  background-color: rgb(45, 45, 43);
+  background-color:transparent;
   padding: 10px; 
   align-items: center;
   border-radius: 20px;

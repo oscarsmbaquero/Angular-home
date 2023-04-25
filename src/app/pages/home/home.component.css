@@ -1,4 +1,4 @@
-.home{
+/* .home{
     min-height: 90vh;
     background-image: url('https://res.cloudinary.com/dcfk8yjwr/image/upload/v1682275659/o_s_bme299.jpg');
     background-size: cover;
@@ -9,4 +9,24 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,.15);
+} */
+.bg-image {
+    background-image: linear-gradient(to bottom, rgba(3,3,3,0.8), rgba(3, 3, 0, 0.8)), url('../../../assets/otto&sua.jpeg'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    flex: 1;
+    /* min-height: 70vh; */
+    /* padding-top: 140px; */
+    /* padding: 50px; */
+    
+  }
+  @media (max-width: 767px) {
+    .bg-image {
+        min-height: 90vh;
+        /* padding: 20px; */
+        /* background-size: contain; */
+    }
 }
