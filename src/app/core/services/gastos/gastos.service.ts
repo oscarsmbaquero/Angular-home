@@ -4,7 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroment/environment';
 import { OnInit } from '@angular/core';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +27,18 @@ export class GastosService implements OnInit{
     return this.httpClient.post<IGasto>(
       `${environment.apiUrl}gastos`,
       body
+    );
+  }
+  public getGastosMes(): Observable<IGasto[]> {
+    const today = new Date();
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  
+    return this.httpClient.get<IGasto[]>(`${environment.apiUrl}gastos`).pipe(
+      map(gastos => gastos.filter(gasto => {
+        const gastoDate = new Date(gasto.fecha);
+        return gastoDate.getTime() >= firstDayOfMonth.getTime() && gastoDate.getTime() <= lastDayOfMonth.getTime();
+      }))
     );
   }
 }

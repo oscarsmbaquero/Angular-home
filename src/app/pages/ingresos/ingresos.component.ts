@@ -10,9 +10,11 @@ import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 })
 export class IngresosComponent {
   public  ingresos: Iingreso[] = [];
+  public  ingresosMes: Iingreso[] = [];
 
   ngOnInit(): void {
     this.getIngresos();
+    this.getIngresosMes();
    }
    constructor(private ingresosService: IngresosService) {
     
@@ -20,9 +22,13 @@ export class IngresosComponent {
    private getIngresos() {
     this.ingresosService.getIngreso().subscribe((ingresos) => {
       this.ingresos = ingresos;
-      console.log(this.ingresos,18);
-    });
-   
+      console.log(this.ingresos,24);
+    });   
   }
-
+  private getIngresosMes() {
+    this.ingresosService.getIngresosMes().subscribe((ingresoMes) => {
+      this.ingresosMes = ingresoMes;
+      console.log(this.ingresosMes,39);
+    });   
+  }
 }

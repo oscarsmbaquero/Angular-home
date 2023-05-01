@@ -49,24 +49,26 @@ export class PanelControlComponent  implements OnInit{
     
   }
   private getTotalGastos() {
-    this.gastosService.getGastos().subscribe((gastos) => {
+    this.gastosService.getGastosMes().subscribe((gastos) => {
       this.gastos = gastos;
       let suma = 0;
       for (let i = 0; i < this.gastos.length; i++) {
         suma += this.gastos[i].importe;
       }
     this.sumaG = suma;
+    console.log(this.sumaG,59);
+    
     });
   }
   private getTotalIngresos() {
-    this.ingresosService.getIngreso().subscribe((ingresos) => {
+    this.ingresosService.getIngresosMes().subscribe((ingresos) => {
       this.ingresos = ingresos;
       let suma = 0;
       for (let i = 0; i < this.ingresos.length; i++) {
         suma += this.ingresos[i].importe;
       }
     this.sumaIngreso = suma;
-    console.log(this.sumaIngreso,60)
+    console.log(this.sumaIngreso,71)
     });
   }
   calcularDiferencia(){

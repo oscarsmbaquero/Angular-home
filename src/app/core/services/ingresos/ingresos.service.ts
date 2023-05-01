@@ -4,6 +4,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviroment/environment';
 import { OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,20 @@ export class IngresosService implements OnInit{
     return this.httpClient.post<Iingreso>(
       `${environment.apiUrl}ingresos`,
       body
+    );
+  }
+  public getIngresosMes(): Observable<Iingreso[]> {
+    const today = new Date();
+    const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  
+    return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`).pipe(
+      map(ingresos => ingresos.filter(ingreso => {
+        const ingresoDate = new Date(ingreso.fecha);
+        console.log(ingresoDate,41)
+        return ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime();
+        
+      }))
     );
   }
 }
