@@ -32,6 +32,11 @@ export class ModalComponent {
      * flag para guardar la diferencia
      */
     diferencia:number=0;
+    /**
+     * flag para guardar el mes actual
+     */
+    mesActual:string='';
+
     gastoMayor:boolean=false;
     ingresoMayor:boolean=false;
   constructor(
@@ -42,11 +47,12 @@ export class ModalComponent {
   ngOnInit(): void {
     this.getTotalGastos();
     this.getTotalIngresos();
+    this.pintarMesActual();
     // this.calcularGastoMayor();
     
   }
   private getTotalGastos() {
-    this.gastosService.getGastos().subscribe((gastos) => {
+    this.gastosService.getGastosMes().subscribe((gastos) => {
       this.gastos = gastos;
       let suma = 0;
       for (let i = 0; i < this.gastos.length; i++) {
@@ -56,7 +62,7 @@ export class ModalComponent {
     });
   }
   private getTotalIngresos() {
-    this.ingresosService.getIngreso().subscribe((ingresos) => {
+    this.ingresosService.getIngresosMes().subscribe((ingresos) => {
       this.ingresos = ingresos;
       let suma = 0;
       for (let i = 0; i < this.ingresos.length; i++) {
@@ -77,6 +83,13 @@ export class ModalComponent {
 
   closeModal() {
     this.modalService.closeModal();
+  }
+
+  pintarMesActual() {
+    const fechaActual = new Date();
+    const nombreMes = fechaActual.toLocaleDateString('es-ES', { month: 'long' });
+    this.mesActual = nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1);
+    
   }
 
 }
