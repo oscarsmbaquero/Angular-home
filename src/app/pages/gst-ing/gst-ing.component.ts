@@ -28,25 +28,81 @@ export class GstIngComponent implements OnInit{
    *flag para guardar la suma  
    */ 
    sumaIngreso:number=0 ;
+   /**
+    * 
+    */
+   gastoCasa: IGasto[]=[]
+  /**
+   * 
+   */
+   gastoMoto: IGasto[]=[]
+
+
   constructor(
     private gastosService: GastosService,
     private ingresosService: IngresosService
   ){}
 
   ngOnInit(): void {
-    this.getTotalGastos();
+    this.getTotalGastosCasa();
     this.getTotalIngresos();
+    this.getTotalGastos();
+    this.getTotalGastosMoto();
     
   }
-
+  /**
+   * Total de gastos
+   */
   private getTotalGastos() {
     this.gastosService.getGastos().subscribe((gastos) => {
       this.gastos = gastos;
+      console.log(this.gastos,55)
       let suma = 0;
       for (let i = 0; i < this.gastos.length; i++) {
         suma += this.gastos[i].importe;
       }
     this.sumaG = suma;
+    });
+  }
+  /**
+   * Total gasto casa
+   */
+  private getTotalGastosCasa() {
+    this.gastosService.getGastos().subscribe((gastos) => {
+      this.gastos = gastos;
+      this.gastoCasa = this.gastos.filter(gasto => gasto.tipo === 'casa');
+      let suma = 0;
+      for (let i = 0; i < this.gastoCasa.length; i++) {
+        suma += this.gastoCasa[i].importe;
+      }
+    this.sumaG = suma;
+    
+    });
+  }
+  private getTotalGastosMoto() {
+    this.gastosService.getGastos().subscribe((gastos) => {
+      this.gastos = gastos;
+      this.gastoMoto = this.gastos.filter(gasto => gasto.tipo === 'moto');
+      let suma = 0;
+      for (let i = 0; i < this.gastoMoto.length; i++) {
+        suma += this.gastoMoto[i].importe;
+      }
+    this.sumaG = suma;
+    
+    });
+  }
+  private getTotalGastosPersonal() {
+    this.gastosService.getGastos().subscribe((gastos) => {
+      this.gastos = gastos;
+      this.gastoCasa = this.gastos.filter(gasto => gasto.tipo === 'casa')
+
+      console.log(this.gastoCasa,45)
+      let suma = 0;
+      for (let i = 0; i < this.gastoCasa.length; i++) {
+        suma += this.gastoCasa[i].importe;
+      }
+    this.sumaG = suma;
+    
     });
   }
   private getTotalIngresos() {
