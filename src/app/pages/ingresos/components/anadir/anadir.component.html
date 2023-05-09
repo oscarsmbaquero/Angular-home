@@ -47,13 +47,21 @@
                 </mat-select>
               </mat-form-field>
               <mat-card-content>
-                <button
+                <div *ngIf="registerIngreso.valid">
+                  <button
+                    mat-raised-button
+                    color="primary" style="border-radius: 29px;"
+                  >
+                    Enviar
+                  </button>  
+                  </div>
+                <!-- <button
                   mat-raised-button
                   color="primary"
                   [disabled]="!registerIngreso.valid"
                 >
                   Enviar
-                </button>
+                </button> -->
               </mat-card-content>
             </form>
           </mat-card-content>

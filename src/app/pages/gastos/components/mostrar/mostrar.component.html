@@ -39,11 +39,11 @@
 <div class="button">
   
   <div *ngIf="suma; else nosuma">
-    <button mat-raised-button color="warn" (click)="resetSuma()">{{ suma }} €</button>
+    <button mat-raised-button color="warn" style="border-radius: 29px;" (click)="resetSuma()">{{ suma }} €</button>
     <!-- <button (click)="sumaImportes()">{{ suma }}</button> -->
   </div>
   <ng-template #nosuma>
-    <button mat-raised-button color="primary" (click)="sumaImportes()">Total</button>
+    <button mat-raised-button color="primary" style="border-radius: 29px;" (click)="sumaImportes()">Total</button>
     <!-- <button (click)="sumaImportes()">Total</button> -->
   </ng-template>
 </div>

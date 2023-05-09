@@ -15,7 +15,7 @@
               <mat-label>Descripcion:</mat-label>
               <input matInput formControlName="descripcion" />
               <mat-error *ngIf="registerGasto.get('descripcion')?.invalid">
-                Descripcion obligatoria
+                Descripción obligatoria
               </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill" class="datepicker-field">
@@ -45,17 +45,26 @@
                 <mat-option value="casa">Casa</mat-option>
                 <mat-option value="moto">Moto</mat-option>
                 <mat-option value="otro">Otro</mat-option>
-                
+                <mat-option value="otro">Coche</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-card-content>
+              <div *ngIf="registerGasto.valid">
               <button
+                mat-raised-button
+                color="primary" style="border-radius: 29px;"
+              >
+                Enviar
+              </button>  
+              </div>
+              
+              <!-- <button
                 mat-raised-button
                 color="primary"
                 [disabled]="!registerGasto.valid"
               >
                 Enviar
-              </button>
+              </button> -->
             </mat-card-content>
           </form>
         </mat-card-content>
