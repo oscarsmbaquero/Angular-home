@@ -1,14 +1,14 @@
-.container {
+.containers {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    /* height: 80%; */
     
   }
   
   mat-card {
     max-width: 450px;
-    width: 100%;
+    width: 40%;
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;

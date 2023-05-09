@@ -29,6 +29,10 @@ const routes: Routes = [
     path: "compra",
     loadChildren: () => import('src/app/pages/compra/compra.module').then(m => m.CompraModule)
    },
+   {
+    path: "login",
+    loadChildren: () => import('src/app/pages/login/login.module').then(m => m.LoginModule)
+   },
 ];
 
 @NgModule({

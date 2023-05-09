@@ -19,10 +19,10 @@
   } */
   
  
-html, body {
+/* html, body {
   height: 100%;
-  margin: 0;
-}
+  margin: 50px;
+} */
 
 /* .bg-image {
   height: 100%;
@@ -30,12 +30,25 @@ html, body {
   flex-direction: column;
 } */
 
-main {
-  flex-grow: 1;
+.main {
+  min-height: 100px;
+  max-height: 500px;
+  /* height: auto;
+  overflow-y: auto; */
+  height: 100%; /* altura fija del div */
+  overflow: auto;
+}
+@media only screen and (max-width: 767px) {
+  .main {
+    min-height: 100px;
+    max-height: 800px; 
+    height: auto;
+    overflow-y: auto;
+  }
 }
 
-footer {
-  flex-shrink: 0;
+.footer {
+  flex-shrink: 1;
 }
  
   
