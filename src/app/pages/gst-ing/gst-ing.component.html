@@ -1,7 +1,7 @@
 <div class="layout">
   <div>
     <mat-form-field appearance="fill" class="datepicker-field">
-      <mat-label>Més</mat-label>
+      <mat-label>Selecciona el més</mat-label>
       <mat-select disableRipple formControlName="month" (selectionChange)="filterByMonth($event)">
         <mat-option *ngFor="let month of months" [value]="month">{{
           month

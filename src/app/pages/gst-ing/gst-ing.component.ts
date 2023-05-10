@@ -19,17 +19,28 @@ private gastosCompletados = new Subject<number>();
 private totalIngreso = new Subject<number>();
 
 
-  @Input() public title: string =  'Sin titulo' ;
+@Input() public title: string =  'Sin titulo' ;
 
 @Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
 
-@Input('data') barChartData: ChartData<'doughnut'>  = {
-      labels: this.barChartLabels,
-      datasets: [
-        { data: [ 0, 0 ] },
+// @Input('data') barChartData: ChartData<'bar'>  = {
+//       labels: this.barChartLabels,
+//       datasets: [
+//         { data: [ 0, 0 ] },
+        
        
-      ]
-    };
+//       ]
+//     };
+@Input('data') barChartData: ChartData<'bar'>  = {
+  labels: this.barChartLabels,
+  datasets: [
+    {
+      data: [ 0, 0 ],
+      
+    }
+  ]
+};
+
   public barChartType: ChartType = 'bar';
   /**
    *Almacenamos los gastos en un array vacio
@@ -160,7 +171,6 @@ private totalIngreso = new Subject<number>();
   private getIngresosMesSeleccionado(month:string) {
     this.ingresosService.getIngresosMesSeleccionado(month).subscribe((ingresos) => {
       this.ingresos = ingresos;
-      //this.ingresos = ingresos.filter((ingreso) => ingreso.fecha === this.mesSeleccionado);
       console.log(this.ingresos, 101)
       let suma = 0;
       for (let i = 0; i < this.ingresos.length; i++) {
@@ -175,8 +185,27 @@ private totalIngreso = new Subject<number>();
     const month = event.value;
     this.selectedMonth = month;
     this.getIngresosMesSeleccionado(month);
+    this.getGastosMesSeleccionado(month);
   }
   
+  private getGastosMesSeleccionado(month:string) {
+    this.gastosService.getGastosMesSeleccionado(month).subscribe((gastos) => {
+      this.gastos = gastos;
+      console.log(this.gastos, 182)
+      let suma = 0;
+      for (let i = 0; i < this.gastos.length; i++) {
+        suma += this.gastos[i].importe;
+      }
+      this.sumaG = suma;
+      this.totalIngreso.next(this.sumaIngreso);
+      this.updateChartData(this.sumaG, this.sumaIngreso);
+    });
+  }
+  // filterByMonth(event: any) {    
+  //   const month = event.value;
+  //   this.selectedMonth = month;
+  //   this.getIngresosMesSeleccionado(month);
+  // }
   
 
 }

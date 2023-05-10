@@ -64,25 +64,7 @@ export class IngresosService implements OnInit{
   //     }))
   //   );
   // }
-  // public getIngresosMesSeleccionado(month: string): Observable<Iingreso[]> {
-  //   const today = new Date();
-  //   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  //   const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-  //   const selectedMonth = new Date(`01 ${month} ${today.getFullYear()}`).getMonth();
-   
-    
-  //   return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`).pipe(
-  //     map(ingresos => ingresos.filter(ingreso => {
-  //       console.log(ingreso.fecha,69)
-  //       const ingresoDate = new Date(ingreso.fecha);
-  //       console.log(ingresoDate,71  );
-  //       const ingresoMonth = ingresoDate.getMonth();
-  //       console.log(ingresoMonth,73);
-  //       console.log(ingresoMonth === selectedMonth && ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime(),71)
-  //       return ingresoMonth === selectedMonth && ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime();
-  //     }))
-  //   );
-  // }
+  
   public getIngresosMesSeleccionado(month: string): Observable<Iingreso[]> {
     
     const monthIndex: MonthIndex  = {
