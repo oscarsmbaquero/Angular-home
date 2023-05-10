@@ -3,6 +3,7 @@
     justify-content: center; /* centra los elementos horizontalmente */
     flex-wrap: wrap; /* envuelve los elementos en una nueva fila cuando el contenedor desborda */
     align-items: center;
+    width: 80%;
   }
   
   .layout > div {

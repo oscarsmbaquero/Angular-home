@@ -1,49 +1,16 @@
-/* .bg-image {
-    background-image: url('https://e0.pxfuel.com/wallpapers/220/97/desktop-wallpaper-hot-wheels-widescreen-cool-hot-wheels-logo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    padding-bottom: 100px;
-  } */
-  /* body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-   
-  } */
-  
-  /* main {
-    flex: 1;
-    margin-left: 50px;
-  } */
-  
- 
-/* html, body {
-  height: 100%;
-  margin: 50px;
-} */
-
-/* .bg-image {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-} */
 
 .main {
   min-height: 100px;
-  max-height: 500px;
-  /* height: auto;
-  overflow-y: auto; */
-  height: 100%; /* altura fija del div */
-  overflow: auto;
+  max-height: 1800px;
+   /* height: auto; */
+  height: 100%;
 }
 @media only screen and (max-width: 767px) {
   .main {
     min-height: 100px;
     max-height: 800px; 
-    height: auto;
-    overflow-y: auto;
+    /* height: auto; */
+    /* overflow-y: auto; */
   }
 }
 

@@ -9,7 +9,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div>
+  <div *ngIf="sumaG && sumaIngreso; else notDatos">
     <canvas
       baseChart
       class="chart"
@@ -19,4 +19,7 @@
     >
     </canvas>
   </div>
+  <ng-template #notDatos>
+    <h3>No hay datos disponibles.</h3>
+  </ng-template>
 </div>

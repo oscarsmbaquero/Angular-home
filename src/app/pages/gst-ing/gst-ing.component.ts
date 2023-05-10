@@ -167,6 +167,12 @@ private totalIngreso = new Subject<number>();
   //     this.updateChartData(this.sumaG, this.sumaIngreso);
   //   });
   // }
+  filterByMonth(event: any) {    
+    const month = event.value;
+    this.selectedMonth = month;
+    this.getIngresosMesSeleccionado(month);
+    this.getGastosMesSeleccionado(month);
+  }
   
   private getIngresosMesSeleccionado(month:string) {
     this.ingresosService.getIngresosMesSeleccionado(month).subscribe((ingresos) => {
@@ -180,12 +186,6 @@ private totalIngreso = new Subject<number>();
       this.totalIngreso.next(this.sumaIngreso);
       this.updateChartData(this.sumaG, this.sumaIngreso);
     });
-  }
-  filterByMonth(event: any) {    
-    const month = event.value;
-    this.selectedMonth = month;
-    this.getIngresosMesSeleccionado(month);
-    this.getGastosMesSeleccionado(month);
   }
   
   private getGastosMesSeleccionado(month:string) {
