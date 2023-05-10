@@ -1,4 +1,10 @@
 .datepicker-field {
     width: 100%;
   }
+
+.my-snackbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   

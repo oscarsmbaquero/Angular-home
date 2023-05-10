@@ -1,4 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,Input } from '@angular/core';
+import { ChartData, ChartEvent, ChartType} from 'chart.js';
+
+import { Subject } from 'rxjs';
 
 import { GastosService } from 'src/app/core/services/gastos/gastos.service';
 import { IngresosService } from 'src/app/core/services/ingresos/ingresos.service';
@@ -11,6 +14,23 @@ import { Iingreso } from 'src/app/core/services/models/ingreso.models';
   styleUrls: ['./gst-ing.component.css']
 })
 export class GstIngComponent implements OnInit{
+
+private gastosCompletados = new Subject<number>();
+private totalIngreso = new Subject<number>();
+
+
+  @Input() public title: string =  'Sin titulo' ;
+
+@Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
+
+@Input('data') barChartData: ChartData<'doughnut'>  = {
+      labels: this.barChartLabels,
+      datasets: [
+        { data: [ 0, 0 ] },
+       
+      ]
+    };
+  public barChartType: ChartType = 'bar';
   /**
    *Almacenamos los gastos en un array vacio
     */
@@ -36,39 +56,31 @@ export class GstIngComponent implements OnInit{
    * 
    */
    gastoMoto: IGasto[]=[]
+   /**
+    * opciones el input select
+    */
+   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Dicember'];
 
-
+   selectedMonth: any;
+   mesSeleccionado: any;
   constructor(
     private gastosService: GastosService,
     private ingresosService: IngresosService
   ){}
 
   ngOnInit(): void {
-    this.getTotalGastosCasa();
-    this.getTotalIngresos();
-    this.getTotalGastos();
-    this.getTotalGastosMoto();
+    //this.getTotalGastosCasa();
+    //this.getIngresosMes();
+    //this.getGastosMes();
+    //this.getTotalGastosMoto();
     
   }
-  /**
-   * Total de gastos
-   */
-  private getTotalGastos() {
-    this.gastosService.getGastos().subscribe((gastos) => {
-      this.gastos = gastos;
-      console.log(this.gastos,55)
-      let suma = 0;
-      for (let i = 0; i < this.gastos.length; i++) {
-        suma += this.gastos[i].importe;
-      }
-    this.sumaG = suma;
-    });
-  }
+ 
   /**
    * Total gasto casa
    */
   private getTotalGastosCasa() {
-    this.gastosService.getGastos().subscribe((gastos) => {
+    this.gastosService.getGastosMes().subscribe((gastos) => {
       this.gastos = gastos;
       this.gastoCasa = this.gastos.filter(gasto => gasto.tipo === 'casa');
       let suma = 0;
@@ -76,6 +88,7 @@ export class GstIngComponent implements OnInit{
         suma += this.gastoCasa[i].importe;
       }
     this.sumaG = suma;
+   
     
     });
   }
@@ -88,6 +101,7 @@ export class GstIngComponent implements OnInit{
         suma += this.gastoMoto[i].importe;
       }
     this.sumaG = suma;
+    return this.sumaG;
     
     });
   }
@@ -105,15 +119,62 @@ export class GstIngComponent implements OnInit{
     
     });
   }
-  private getTotalIngresos() {
-    this.ingresosService.getIngreso().subscribe((ingresos) => {
+ 
+  private updateChartData(gastos: number, ingresos: number) {
+    const newData = {
+      labels: this.barChartLabels,
+      datasets: [
+        { data: [gastos, ingresos] }
+      ]
+    };
+    this.barChartData = newData;
+  }
+  
+  private getGastosMes() {
+    this.gastosService.getGastosMes().subscribe((gastos) => {
+      this.gastos = gastos;
+      let suma = 0;
+      for (let i = 0; i < this.gastos.length; i++) {
+        suma += this.gastos[i].importe;
+      }
+      this.sumaG = suma;
+      console.log(this.sumaG,91)
+      this.gastosCompletados.next(this.sumaG);
+      this.updateChartData(this.sumaG, this.sumaIngreso);
+    });
+  }
+  // private getIngresosMes() {
+  //   this.ingresosService.getIngresosMes().subscribe((ingreso) => {
+  //     this.ingresos = ingreso;
+  //     let suma = 0;
+  //     for (let i = 0; i < this.ingresos.length; i++) {
+  //       suma += this.ingresos[i].importe;
+  //     }
+  //     this.sumaIngreso = suma;
+  //     console.log(this.sumaIngreso,91)
+  //     this.totalIngreso.next(this.sumaIngreso);
+  //     this.updateChartData(this.sumaG, this.sumaIngreso);
+  //   });
+  // }
+  
+  private getIngresosMesSeleccionado(month:string) {
+    this.ingresosService.getIngresosMesSeleccionado(month).subscribe((ingresos) => {
       this.ingresos = ingresos;
+      //this.ingresos = ingresos.filter((ingreso) => ingreso.fecha === this.mesSeleccionado);
+      console.log(this.ingresos, 101)
       let suma = 0;
       for (let i = 0; i < this.ingresos.length; i++) {
         suma += this.ingresos[i].importe;
       }
-    this.sumaIngreso = suma;
+      this.sumaIngreso = suma;
+      this.totalIngreso.next(this.sumaIngreso);
+      this.updateChartData(this.sumaG, this.sumaIngreso);
     });
+  }
+  filterByMonth(event: any) {    
+    const month = event.value;
+    this.selectedMonth = month;
+    this.getIngresosMesSeleccionado(month);
   }
   
   

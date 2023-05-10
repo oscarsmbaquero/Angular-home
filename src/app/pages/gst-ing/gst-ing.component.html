@@ -1,4 +1,22 @@
-<div>
-    <h1>Suma Infreso:{{sumaIngreso}}</h1>
-    <h1>{{sumaG}}</h1>
+<div class="layout">
+  <div>
+    <mat-form-field appearance="fill" class="datepicker-field">
+      <mat-label>Més</mat-label>
+      <mat-select disableRipple formControlName="month" (selectionChange)="filterByMonth($event)">
+        <mat-option *ngFor="let month of months" [value]="month">{{
+          month
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData"
+      [type]="barChartType"
+      [labels]="barChartLabels"
+    >
+    </canvas>
+  </div>
 </div>

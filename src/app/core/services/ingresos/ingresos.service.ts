@@ -6,10 +6,17 @@ import { environment } from 'src/enviroment/environment';
 import { OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
+interface MonthIndex {
+  [key: string]: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class IngresosService implements OnInit{
+  
 
   constructor(private httpClient: HttpClient) { }
   
@@ -43,4 +50,68 @@ export class IngresosService implements OnInit{
       }))
     );
   }
+  // public getIngresosMesSeleccionado(month:string): Observable<Iingreso[]> {
+  //   const today = new Date();
+  //   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  //   const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  
+  //   return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`).pipe(
+  //     map(ingresos => ingresos.filter(ingreso => {
+  //       const ingresoDate = new Date(ingreso.fecha);
+  //       console.log(ingresoDate,41)
+  //       return ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime();
+        
+  //     }))
+  //   );
+  // }
+  // public getIngresosMesSeleccionado(month: string): Observable<Iingreso[]> {
+  //   const today = new Date();
+  //   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  //   const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  //   const selectedMonth = new Date(`01 ${month} ${today.getFullYear()}`).getMonth();
+   
+    
+  //   return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`).pipe(
+  //     map(ingresos => ingresos.filter(ingreso => {
+  //       console.log(ingreso.fecha,69)
+  //       const ingresoDate = new Date(ingreso.fecha);
+  //       console.log(ingresoDate,71  );
+  //       const ingresoMonth = ingresoDate.getMonth();
+  //       console.log(ingresoMonth,73);
+  //       console.log(ingresoMonth === selectedMonth && ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime(),71)
+  //       return ingresoMonth === selectedMonth && ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime();
+  //     }))
+  //   );
+  // }
+  public getIngresosMesSeleccionado(month: string): Observable<Iingreso[]> {
+    
+    const monthIndex: MonthIndex  = {
+      'January': 0,
+      'February': 1,
+      'March': 2,
+      'April': 3,
+      'May': 4,
+      'June': 5,
+      'July': 6,
+      'August': 7,
+      'September': 8,
+      'October': 9,
+      'November': 10,
+      'December': 11
+    };
+    const today = new Date();
+    const firstDayOfMonth = new Date(today.getFullYear(), monthIndex[month], 1);
+    const lastDayOfMonth = new Date(today.getFullYear(), monthIndex[month] + 1, 0);
+    
+    return this.httpClient.get<Iingreso[]>(`${environment.apiUrl}ingresos`).pipe(
+      map(ingresos => ingresos.filter(ingreso => {
+        const ingresoDate = new Date(ingreso.fecha);
+        const ingresoMonth = ingresoDate.getMonth();
+        return ingresoMonth === monthIndex[month] && ingresoDate.getTime() >= firstDayOfMonth.getTime() && ingresoDate.getTime() <= lastDayOfMonth.getTime();
+      }))
+    );
+  }
+
+  
+  
 }

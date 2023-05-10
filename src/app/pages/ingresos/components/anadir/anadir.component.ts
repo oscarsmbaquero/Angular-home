@@ -67,7 +67,8 @@ constructor(
         (response) => {
           console.log('Datos enviados con éxito');
           this.snackBar.open('El gasto ha sifo añadido correctamente', 'Cerrar', {
-            duration: 3000
+            duration: 3000,
+             panelClass: ['my-snackbar-container']
           });
           this.router.navigate(['ingresos']);
         },
