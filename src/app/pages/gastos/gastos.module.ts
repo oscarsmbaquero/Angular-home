@@ -24,6 +24,7 @@ import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mate
 
 import { AnadirComponent } from './components/anadir/anadir.component';
 import { MostrarComponent } from './components/mostrar/mostrar.component';
+import { TodosComponent } from './components/todos/todos.component';
 
 
 
@@ -31,7 +32,8 @@ import { MostrarComponent } from './components/mostrar/mostrar.component';
   declarations: [
     GastosComponent,
     AnadirComponent,
-    MostrarComponent
+    MostrarComponent,
+    TodosComponent
   ],
   imports: [  
     CommonModule,
