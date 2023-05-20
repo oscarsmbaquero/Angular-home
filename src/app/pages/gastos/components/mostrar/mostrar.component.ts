@@ -43,10 +43,10 @@ this.suma = suma;
 }
 
 iconos: { [key: string]: string } = {
-  moto: '/assets/iconos/moto.jpg',
+  moto: '/assets/iconos/moto.png',
   casa: '/assets/iconos/casa.png',
   personal: '/assets/iconos/personal.png',
-  coche:'/assets/iconos/coche.jpeg',
+  coche:'/assets/iconos/coche.png',
   sua:'/assets/iconos/sua.jpg',
   otro:'/assets/iconos/otro.png',
   // Agrega más tipos de gasto y sus iconos correspondientes
