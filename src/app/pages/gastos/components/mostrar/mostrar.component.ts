@@ -5,6 +5,7 @@ import { GastosService } from '../../../../core/services/gastos/gastos.service';
 import { DatePipe } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-mostrar',
   templateUrl: './mostrar.component.html',
@@ -40,6 +41,18 @@ sumaImportes(){
   }
 this.suma = suma;  
 }
+
+iconos: { [key: string]: string } = {
+  moto: '/assets/iconos/moto.jpg',
+  casa: '/assets/iconos/casa.png',
+  personal: '/assets/iconos/personal.png',
+  coche:'/assets/iconos/coche.jpeg',
+  sua:'/assets/iconos/sua.jpg',
+  otro:'/assets/iconos/otro.png',
+  // Agrega más tipos de gasto y sus iconos correspondientes
+};
+
+
 
 resetSuma(){  
   this.suma = 0;  
