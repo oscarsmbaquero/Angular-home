@@ -51,3 +51,14 @@
   transform: rotate(360deg);
   transition-duration: 2s;
 }
+.navbar-collapse {
+  justify-content: flex-end;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
