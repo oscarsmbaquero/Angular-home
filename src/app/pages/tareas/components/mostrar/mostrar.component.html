@@ -4,3 +4,7 @@
     <!-- [selected]="fechaSeleccionada" 
     (selectedChange)="fechaSeleccionadaCambiada($event)" 
   </div> -->
+  <div *ngIf="tareas">
+    <mat-calendar [dateClass]="dateClass"></mat-calendar>
+  </div>
+  

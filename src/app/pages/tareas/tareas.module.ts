@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { TareasComponent } from './tareas.component';
@@ -16,10 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatNativeDateModule } from '@angular/material/core';
 // import { MatNativeDateModule } from '@angular/material/core';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -45,12 +48,17 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatTableModule,
     MatDatepickerModule,
+    MatIconModule,
+    MatNativeDateModule
     //MatNativeDateModule,
     //BrowserModule,
-    BrowserAnimationsModule,
-    MatIconModule,
+    // BrowserAnimationsModule,
+    // MatIconModule,
     
   ],
+  providers:[
+    DatePipe
+  ]
  
 })
 export class TareasModule { }

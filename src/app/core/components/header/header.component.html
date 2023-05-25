@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" routerLink="/">
+  <a class="navbar-brand ms-3 me-auto" routerLink="/">
     <!-- <img src="assets/logo.jpg" width="70" height="50" alt="" />&nbsp; -->
     <span class="text-warning">HOME</span>
   </a>
@@ -14,38 +14,25 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto px-3 " >
+    <ul class="navbar-nav mr-auto px-3 flex-column flex-md-row">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/ingresos" data-toggle="collapse" data-target=".navbar-collapse.show">Ingresos</a>
-
+        <a class="nav-link" [routerLink]="['/ingresos']" data-toggle="collapse" data-target=".navbar-collapse.show">Ingresos</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/gastos" data-toggle="collapse" data-target=".navbar-collapse.show">Gastos</a>
+        <a class="nav-link" [routerLink]="['/gastos']" data-toggle="collapse" data-target=".navbar-collapse.show">Gastos</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/gsvsin" data-toggle="collapse" data-target=".navbar-collapse.show">Ingresos vs Gastos</a>
+        <a class="nav-link" [routerLink]="['/gsvsin']" data-toggle="collapse" data-target=".navbar-collapse.show">Ingresos vs Gastos</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/tareas" data-toggle="collapse" data-target=".navbar-collapse.show">Tareas</a>
-      </li>
-      <!-- <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/anadir">Coche</a>
+        <a class="nav-link" [routerLink]="['/tareas']" data-toggle="collapse" data-target=".navbar-collapse.show">Tareas</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/anadir">Moto</a>
-      </li> -->
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/compra" data-toggle="collapse" data-target=".navbar-collapse.show">Compra</a>
+        <a class="nav-link" [routerLink]="['/compra']" data-toggle="collapse" data-target=".navbar-collapse.show">Compra</a>
       </li>       
-      <li>
+      <li class="nav-item">
         <app-panel-control></app-panel-control>
-      </li>
-    </ul>
-      <ul class="navbar-nav ml-auto px-3 " >
-      <li class="nav-item" routerLinkActive="active" >
-        <a class="nav-link" routerLink="/login" data-toggle="collapse" data-target=".navbar-collapse.show">Login</a>
       </li>
     </ul>
   </div>

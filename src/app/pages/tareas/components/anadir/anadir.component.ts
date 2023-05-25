@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ITareas } from 'src/app/core/services/models/tareas.models';
+import { TareasService } from 'src/app/core/services/tareas/tareas.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-anadir',
@@ -27,6 +31,9 @@ public submitted: boolean = false;
 
 constructor(
   private formBuilder: FormBuilder,
+  private tareasService: TareasService,
+  private router: Router,
+  private snackBar: MatSnackBar
 ){
   this.registerTarea = this.formBuilder.group({
     descripcion: ['', [Validators.required, Validators.maxLength(20)]],
@@ -51,19 +58,19 @@ public onSubmit(): void {
      tipo: this.registerTarea.get('tipo')?.value,
     
    };
-  //  console.log(gasto);
-  //  this.gastosService.addGasto(gasto).subscribe(
-  //    (response) => {
-  //      console.log('Datos enviados con éxito');
-  //      this.snackBar.open('El gasto ha sifo añadido correctamente', 'Cerrar', {
-  //        duration: 3000
-  //      });
-  //      this.router.navigate(['']);
-  //    },
-  //    (error) => {
-  //      console.error('Error al enviar los datos', error);
-  //    }
-  //  );
+    console.log(tarea);
+   this.tareasService.addTarea(tarea).subscribe(
+     (response) => {
+       console.log('Datos enviados con éxito');
+       this.snackBar.open('La tarea ha sifo añadido correctamente', 'Cerrar', {
+         duration: 3000
+       });
+       this.router.navigate(['']);
+     },
+     (error) => {
+       console.error('Error al enviar los datos', error);
+     }
+   );
  }
  
  }

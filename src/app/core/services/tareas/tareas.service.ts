@@ -22,7 +22,7 @@ export class TareasService {
     return this.httpClient.get<ITareas[]>(`${environment.apiUrl}tareas`);
   }
 
-  public addIngreso(body: ITareas): Observable<ITareas> {
+  public addTarea(body: ITareas): Observable<ITareas> {
     return this.httpClient.post<ITareas>(
       `${environment.apiUrl}tareas`,
       body
