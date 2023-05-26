@@ -5,6 +5,7 @@
     (selectedChange)="fechaSeleccionadaCambiada($event)" 
   </div> -->
   <div *ngIf="tareas">
-    <mat-calendar [dateClass]="dateClass"></mat-calendar>
+    <!-- <mat-calendar [class.has-tasks]="hasTasks"></mat-calendar> -->
+    <mat-calendar [ngClass]="{ 'has-tasks': hasTasks }"></mat-calendar>
   </div>
   

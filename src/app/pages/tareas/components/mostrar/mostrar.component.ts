@@ -16,9 +16,10 @@ export class MostrarComponent implements OnInit{
    */
   tareas:ITareas[]=[];
   
-  
+  hasTasks = false;
+  dateClass:any
   fechaSeleccionada!: Date; // Usar el operador '!' para indicar que no puede ser nula
-
+  
   // fechaSeleccionadaCambiada(event: MatDatepickerInputEvent<Date>) {
   //   this.fechaSeleccionada = event.value!;
   //   // Aquí puedes realizar la consulta a la base de datos utilizando la fecha seleccionada
@@ -31,34 +32,62 @@ constructor(
 ngOnInit(){
 this.getTareas();
 }
+// private getTareas() {
+//   this.tareasService.getTareas().subscribe((tareas) => {
+//     this.tareas = tareas;
+//     console.log(this.tareas,24);
+//   });   
+  
+// }
 private getTareas() {
   this.tareasService.getTareas().subscribe((tareas) => {
-    this.tareas = tareas;
-    console.log(this.tareas,24);
-  });   
-}
-dateClass = (date: Date): MatCalendarCellCssClasses => {
-  const taskDates = this.tareas.map(task => {
-    const formattedDate = new Date(task.fecha).toISOString().substring(0, 10);
-    return formattedDate;
+    const tareasFechaFormat = tareas.map(tarea => {
+      const fecha = new Date(tarea.fecha);
+      const fechaFormateada = this.datePipe.transform(fecha, 'yyyy-MM-dd');
+      return { ...tarea, fecha: fechaFormateada };
+    });
+
+    // this.tareas.fecha = fechasFormateadas;
+  console.log(tareasFechaFormat,50);
+  const fechaActual = new Date();
+  const fechaInicioMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
+  const fechaFinMes = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, 0);
+  const fechaInicioMesFormateada = this.datePipe.transform(fechaInicioMes, 'yyyy-MM-dd') || '';
+  const fechaFinMesFormateada = this.datePipe.transform(fechaFinMes, 'yyyy-MM-dd')|| '';
+  console.log(fechaInicioMesFormateada,fechaFinMesFormateada,56)
+  let hasTasks = false;
+  const resultado =tareasFechaFormat.map((element)=>{
+    if(element.fecha){
+      if(element.fecha >= fechaInicioMesFormateada && element.fecha <= fechaFinMesFormateada){
+        this.hasTasks = true;     
+        console.log(this.hasTasks)
+    }else{
+      console.log('No');
+      this.hasTasks = false;     
+      console.log(this.hasTasks)
+    }
+    }
+  })
   });
-  const dateString = date.toISOString().substring(0, 10);
+  this.hasTasks = this.hasTasks;
+  console.log(this.hasTasks)
   
-  const foundDate = taskDates.find(d => d === dateString);
-  if (foundDate) {
-    console.log('Si')
-    return 'has-tasks';
-  } else {
-    console.log('No')
-    return '';
-  }
-}
 
 
-
-
-
-
-
+ }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
