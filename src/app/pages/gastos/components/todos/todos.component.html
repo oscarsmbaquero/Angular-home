@@ -1,50 +1,79 @@
-<table mat-table [dataSource]="gastos" class="mat-elevation-z8" mat-skeleton>
-    <div *ngIf="gastos; else loading">
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="descripcion">
-        <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Descripcion</th>
-        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="importe">
-        <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Importe</th>
-        <td mat-cell *matCellDef="let element">{{ element.importe }}&nbsp;€</td>
-      </ng-container>
-  
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="fecha">
-        <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Fecha</th>
-        <td mat-cell *matCellDef="let element">
-          {{ formatDate(element.fecha) }}
-        </td>
-      </ng-container>
-      <!-- <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef mat-skeleton>Tipo</th>
-        <td mat-cell *matCellDef="let element">{{ element.tipo }}
-          <span [ngStyle]="{ 'background-image': 'url(/assets/iconos/' + element.tipo + '.jpg)' }"></span>
-        </td>
-      </ng-container> -->
-      <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Tipo</th>
-        <td mat-cell *matCellDef="let element">
-          <img [src]="iconos[element.tipo]" alt="Tipo de gasto" class="icono">
-          <!-- {{ element.tipo }} -->
-        </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+
+<div class="row">
+ 
+  <div class="col-12 d-flex justify-content-center">
+    <!-- <div class="search-container"> -->
+      <div class="p-2">
+      <input type="text"(keyup)="capturarTexto($event)"class="input" placeholder="&nbsp;Buscar..."/>
+      <!-- <i class="fa fa-search search-icon"></i> -->
     </div>
-  </table>
-  
-  <ng-template #loading>
-    carfando.......
-    <app-loading></app-loading>
-  </ng-template>
+    <!-- </div> -->
+    <!-- <input type="text" (keyup)="capturarTexto($event)" class="input" placeholder="Buscar..."> -->
+    <!-- <app-search></app-search> -->
+  </div>
+  </div>
+
+<div class="row">
+  <div *ngIf="gastos">
+    <table mat-table [dataSource]="gastos" class="mat-elevation-z8" mat-skeleton>
+      <div class="row justity-content-center">
+        <div class="col-12">
+          <div class="search-container">
+            <input
+              type="text"
+              (keyup)="capturarTexto($event)"
+              class="input"
+              placeholder="&nbsp;Buscar..."
+            />
+            <!-- <i class="fa fa-search search-icon"></i> -->
+          </div>
+          <!-- <input type="text" (keyup)="capturarTexto($event)" class="input" placeholder="Buscar..."> -->
+          <!-- <app-search></app-search> -->
+        </div>
+      </div>
+        <div *ngIf="gastos">
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Descripcion</th>
+            <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="importe">
+            <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Importe</th>
+            <td mat-cell *matCellDef="let element">{{ element.importe }}&nbsp;€</td>
+          </ng-container>
+      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="fecha">
+            <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Fecha</th>
+            <td mat-cell *matCellDef="let element">
+              {{ formatDate(element.fecha) }}
+            </td>
+          </ng-container>
+          <!-- <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef mat-skeleton>Tipo</th>
+            <td mat-cell *matCellDef="let element">{{ element.tipo }}
+              <span [ngStyle]="{ 'background-image': 'url(/assets/iconos/' + element.tipo + '.jpg)' }"></span>
+            </td>
+          </ng-container> -->
+          <ng-container matColumnDef="tipo">
+            <th mat-header-cell *matHeaderCellDef mat-skeleton class="custom-text">Tipo</th>
+            <td mat-cell *matCellDef="let element">
+              <img [src]="iconos[element.tipo]" alt="Tipo de gasto" class="icono">
+              <!-- {{ element.tipo }} -->
+            </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </div>
+      </table>
+  </div>  
   <div class="button">
     
     <div *ngIf="suma; else nosuma">
@@ -56,4 +85,6 @@
       <!-- <button (click)="sumaImportes()">Total</button> -->
     </ng-template>
   </div>
+</div>
+
   
