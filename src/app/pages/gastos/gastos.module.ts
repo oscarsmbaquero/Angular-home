@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 import { AnadirComponent } from './components/anadir/anadir.component';
@@ -51,7 +52,8 @@ import { TodosComponent } from './components/todos/todos.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    SharedModule
+    SharedModule,
+    MatRadioModule
   ],
   providers: [
     {

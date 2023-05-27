@@ -28,7 +28,7 @@ export class MostrarComponent implements OnInit{
     private datePipe: DatePipe
     ) {  }
     
-  displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha','tipo'];
+  displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha','tipo','opciones'];
  // data = ELEMENT_DATA;
  formatDate(date: Date): string {
   return this.datePipe.transform(date, 'dd/MM/yyyy') || '';

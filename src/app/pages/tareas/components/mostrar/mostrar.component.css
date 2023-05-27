@@ -1,3 +1,17 @@
 .has-tasks {
     background-color: yellow;
   }
+  .has-tasks-day {
+    background-color: yellow; /* Aquí puedes cambiar el color de fondo según tus necesidades */
+  }
+  .fecha-seleccionada{
+    color: brown;
+  }
+  .highlight {
+    background-color: yellow;
+    color:red;
+  }
+  .mat-calendar-cell-highlight {
+    background-color: yellow;
+    /* Otros estilos */
+  }

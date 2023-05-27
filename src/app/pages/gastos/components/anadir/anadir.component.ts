@@ -45,6 +45,7 @@ constructor(
        importe: ['', [Validators.required, Validators.maxLength(20)]],
        fecha: [''],
        tipo: ['', [Validators.required]],
+       modoPago:['',],
        //image: ['', [Validators.required]],
      });
   }
@@ -61,6 +62,7 @@ constructor(
         importe: this.registerGasto.get('importe')?.value,
         fecha: this.registerGasto.get('fecha')?.value.toISOString().substring(0, 10),
         tipo: this.registerGasto.get('tipo')?.value,
+        modoPago: this.registerGasto.get('modoPago')?.value,
        
       };
       console.log(gasto);

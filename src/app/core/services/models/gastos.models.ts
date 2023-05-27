@@ -3,6 +3,7 @@ export interface IGasto {
     descripcion: string;
     fecha:Date;
     importe: number;    
+    modoPago: string; 
     tipo: TypeGasto;
 }
  export enum TypeGasto {

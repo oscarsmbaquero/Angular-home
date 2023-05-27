@@ -4,8 +4,67 @@
     <!-- [selected]="fechaSeleccionada" 
     (selectedChange)="fechaSeleccionadaCambiada($event)" 
   </div> -->
-  <div *ngIf="tareas">
-    <!-- <mat-calendar [class.has-tasks]="hasTasks"></mat-calendar> -->
-    <mat-calendar [ngClass]="{ 'has-tasks': hasTasks }"></mat-calendar>
+  <!-- <div *ngIf="tareasMes.length > 0">
+    <mat-calendar [dateClass]="dateClass"></mat-calendar>
+  </div> -->
+  
+  <div *ngIf="tareasMes.length > 0">
+    <!-- {{ tareasMes | json }} -->
+    <mat-calendar [dateClass]="dateClass"></mat-calendar>
   </div>
+  <div *ngFor=" let tarea of tareasMes">
+    <p>{{tarea.descripcion}}</p>
+    
+  </div>
+  
+  <!-- <mat-calendar [dateClass]="dateClass">
+    <ng-template matCalendarCellClass let-date="date" [class.highlight]="dateClass(date) === 'highlight'">
+      {{ date.getDate() }}
+    </ng-template>
+  </mat-calendar> -->
+  
+  <!-- <div *ngIf="tareas">
+    <mat-calendar [ngClass]="{ 'has-tasks': hasTasks }">
+      <ng-template matCalendarCellTemplate let-cell>
+        <span class="mat-calendar-body-cell-content">
+          {{ cell.date.toDateString() }}
+          <ng-container *ngFor="let tarea of tareasMes">
+            <div *ngIf="!tarea.fecha === cell.date.toDateString() else noTasks;">
+              
+            </div>
+            <ng-template #noTasks>
+              <span  class="fecha-seleccionada">No hay coincidencias </span>
+            </ng-template>
+          </ng-container>
+        </span>
+       
+      </ng-template>
+    </mat-calendar>
+  </div> -->
+  
+  <!-- <mat-calendar [ngClass]="{ 'has-tasks': hasTasks }">
+    <ng-template matCalendarCellTemplate let-cell>
+      <span class="mat-calendar-body-cell-content">
+        {{ getFormattedDate(cell.date) }}
+        <ng-container *ngFor="let tarea of tareasMes">
+          <span *ngIf="tarea.fecha === getFormattedDate(cell.date)" class="fecha-seleccionada">{{ tarea.nombre }}</span>
+        </ng-container>
+      </span>
+    </ng-template>
+  </mat-calendar> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   

@@ -47,9 +47,12 @@
                 <mat-option value="coche">Coche</mat-option>
                 <mat-option value="sua">Sua</mat-option>
                 <mat-option value="otro">Otro</mat-option>
-
               </mat-select>
             </mat-form-field>
+            <mat-radio-group aria-label="Select an option" formControlName="modoPago">
+              <mat-radio-button value="tarjeta">Tarjeta</mat-radio-button>
+              <mat-radio-button value="efectivo">Eféctivo</mat-radio-button>
+            </mat-radio-group>
             <mat-card-content>
               <div *ngIf="registerGasto.valid">
               <button
