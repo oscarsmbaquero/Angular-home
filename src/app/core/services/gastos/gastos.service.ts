@@ -76,4 +76,9 @@ export class GastosService implements OnInit{
     );
   } 
 
+  public deleteGasto(id: string): Observable<IGasto> {
+    console.log(id,22)
+    return this.httpClient.delete<IGasto>( `${environment.apiUrl}gastos/delete/${id}`);
+  }
+
 }

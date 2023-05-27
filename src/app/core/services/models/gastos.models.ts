@@ -1,5 +1,6 @@
 
 export interface IGasto {
+    id?:any;
     descripcion: string;
     fecha:Date;
     importe: number;    

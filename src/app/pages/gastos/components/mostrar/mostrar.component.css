@@ -2,19 +2,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px
+    padding: 0px;
+    /* margin-top: 30px; */
+    border:none
 }
 .icono {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    border: none;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     
   }
   .custom-text{
-    color:red;
+    color:rgb(227, 196, 40);
     font-weight: bold;
   }
 /* .icono-moto {

@@ -14,8 +14,6 @@ import { map } from 'rxjs/operators';
 export class TodosComponent implements OnInit {
 
   suma:number= 0;
- // @Input() gastos:IGasto[] = [];
-  //gastosFiltrados:IGasto[]=this.gastos;
   gastos:IGasto[]=[];
   displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha','tipo'];
  // data = ELEMENT_DATA;
@@ -54,18 +52,14 @@ iconos: { [key: string]: string } = {
 resetSuma(){  
   this.suma = 0;  
 }
-// private getGastos() {
-//   this.gastosService.getGastos().subscribe((gastos) => {
-//     this.gastos = gastos;
-//     console.log(this.gastos,18);
-    
-//   });
-// }
+
 private getGastos(textoDigitado?: string) {
   if (textoDigitado) {
     this.gastosService.getGastos().pipe(
-      map(cars => {
-        return cars.filter(gasto => gasto.descripcion.toLowerCase().includes(textoDigitado.toLowerCase()))
+      map(gastos => {
+        return gastos.filter(gasto => gasto.descripcion.toLowerCase().includes(textoDigitado.toLowerCase())
+        ||
+          gasto.tipo.toLowerCase().includes(textoDigitado.toLowerCase()))
       })
     ).subscribe(filteredCars => {
       this.gastos = filteredCars;
@@ -81,17 +75,5 @@ capturarTexto(event: any) {
   this.getGastos(textoDigitado);
 }
 
-// capturarTexto(event: any) {
-//   let gastoFiltrado;
- 
-//   let textoDigitado = event.target.value;
-//   console.log(textoDigitado,'texto')
-//   if(textoDigitado){
-//     gastoFiltrado = this.gastos.filter(car => car.descripcion.toLowerCase().includes(textoDigitado.toLowerCase()))
-//   }else{
-//     gastoFiltrado = this.gastos
-//     debugger;
-//   }
-//   this.gastosFiltrados = gastoFiltrado
-// }
+
 }

@@ -1,7 +1,8 @@
+import { GastosService } from './../../../../core/services/gastos/gastos.service';
 
 import { Component, Input, OnInit } from '@angular/core';
 import { IGasto } from '../../../../core/services/models/gastos.models';
-import { GastosService } from '../../../../core/services/gastos/gastos.service';
+
 import { DatePipe } from '@angular/common';
 
 
@@ -25,7 +26,8 @@ export class MostrarComponent implements OnInit{
   }
   constructor(
     
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private gastosService: GastosService
     ) {  }
     
   displayedColumns: string[] = [ 'descripcion', 'importe', 'fecha','tipo','opciones'];
@@ -49,6 +51,7 @@ iconos: { [key: string]: string } = {
   coche:'/assets/iconos/coche.png',
   sua:'/assets/iconos/sua.jpg',
   otro:'/assets/iconos/otro.png',
+  eliminar:'/assets/iconos/borrar.jpg',
   // Agrega más tipos de gasto y sus iconos correspondientes
 };
 
@@ -57,4 +60,19 @@ iconos: { [key: string]: string } = {
 resetSuma(){  
   this.suma = 0;  
 }
+
+delete(id: string): void {
+  console.log(id);
+  const confirmation = window.confirm('¿Estás seguro de que deseas eliminar este coche?');
+
+  if (confirmation) {
+    this.gastosService.deleteGasto(id).subscribe((response) => {
+      console.log(response);
+      window.location.reload(); // Refrescar la página actual      
+    });
+  }
+  
+  
+}
+
 }
