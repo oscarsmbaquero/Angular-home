@@ -2,7 +2,9 @@
   <div>
     <mat-form-field appearance="fill" class="datepicker-field">
       <mat-label>Selecciona el més</mat-label>
-      <mat-select disableRipple formControlName="month" (selectionChange)="filterByMonth($event)">
+      <mat-select disableRipple formControlName="month" 
+          (selectionChange)="filterByMonth($event)"
+          >
         <mat-option *ngFor="let month of months" [value]="month">{{
           month
         }}</mat-option>
@@ -24,4 +26,20 @@
   <ng-template #notDatos>
     <h3>No hay datos disponibles.</h3>
   </ng-template>
+  <div *ngIf="sumaGastoMesPersonal">
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData2"
+      [type]="barChartType2"
+      [labels]="barChartLabels"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>
+  <!-- <ng-template #notDatos>
+    <h3>No hay datos disponibles.</h3>
+  </ng-template> -->
 </div>
+

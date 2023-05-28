@@ -7,12 +7,13 @@ export interface IGasto {
     modoPago: string; 
     tipo: TypeGasto;
 }
- export enum TypeGasto {
-    "casa" = "casa",
-    "finca" = "finca",
-    "moto" = "moto",
-    "coche" = "coche",
-    
+export enum TypeGasto {
+  "casa" = "casa",
+  "finca" = "finca",
+  "moto" = "moto",
+  "coche" = "coche",
+  "sua"= "sua",
+  personal = "personal"
 }
 export const TypeOfCar = Object.values(TypeGasto);
 // export interface ISong{

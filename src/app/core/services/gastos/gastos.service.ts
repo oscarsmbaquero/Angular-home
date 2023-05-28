@@ -45,7 +45,6 @@ export class GastosService implements OnInit{
       }))
     );
   }
-
   public getGastosMesSeleccionado(month: string): Observable<IGasto[]> {
     
     const monthIndex: MonthIndex  = {
