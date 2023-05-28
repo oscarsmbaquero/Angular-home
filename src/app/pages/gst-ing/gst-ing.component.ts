@@ -1,14 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
-
 import { Subject } from 'rxjs';
-
 import { GastosService } from 'src/app/core/services/gastos/gastos.service';
 import { IngresosService } from 'src/app/core/services/ingresos/ingresos.service';
-import {
-  TypeGasto,
-  TypeOfCar,
-} from 'src/app/core/services/models/gastos.models';
+import { TypeGasto} from 'src/app/core/services/models/gastos.models';
 import { IGasto } from 'src/app/core/services/models/gastos.models';
 import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 
@@ -18,8 +13,13 @@ import { Iingreso } from 'src/app/core/services/models/ingreso.models';
   styleUrls: ['./gst-ing.component.css'],
 })
 export class GstIngComponent implements OnInit {
+
   private gastosCompletados = new Subject<number>();
-  private totalIngreso = new Subject<number>();
+  private totalIngresoMes = new Subject<number>();
+
+  private totalIngresoAnio = new Subject<number>();
+  private totalsumaGastoAnio = new Subject<number>();
+
   private gastoMesPersonalTotal = new Subject<number>();
   private gastoMesMotoTotal = new Subject<number>();
   private gastoMesCasaTotal = new Subject<number>();
@@ -30,10 +30,8 @@ export class GstIngComponent implements OnInit {
   @Input() public title: string = 'Gastos e Ingresos';
 
   @Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
-
-  //@Input('labels2') batChartLabels2: string[] = ['Personal','Moto','Coche'];
   @Input('labels2') barChartLabels2: string[] = ['Personal', 'Moto', 'Casa','Sua','Coche','Otro'];
-
+  @Input('labels3') barChartLabels3: string[] = ['T.Gastos', 'T.Ingresos'];
   @Input('data') barChartData: ChartData<'bar'> = {
     labels: this.barChartLabels,
     datasets: [
@@ -54,6 +52,16 @@ export class GstIngComponent implements OnInit {
     ],
   };
   public barChartType2: ChartType = 'bar'; 
+
+  @Input('data3') barChartData3: ChartData<'bar'> = {
+    labels: this.barChartLabels3,
+    datasets: [
+      {
+        data: [0, 0],
+      },
+    ],
+  };
+  public barChartType3: ChartType = 'bar';
   /**
    *flag para guardar la suma de lo que pintaremos en la grafica
    */
@@ -65,12 +73,13 @@ export class GstIngComponent implements OnInit {
   sumaGastoMesSua: number = 0;
   sumaGastoMesCoche: number = 0;
   sumaGastoMesOtro: number = 0;
+  sumaGastoAnio: number = 0;
+  ingresoAnio: number= 0;
   
-  /**
-   *
-   */
   gastos: IGasto[] = [];
   ingresos: Iingreso[] = [];
+  ingresosTotalAnio: Iingreso[] = [];
+  gastosTotalAnio: IGasto[] = [];
 
   gastoCasa: IGasto[] = [];
   gastoMoto: IGasto[] = [];
@@ -80,6 +89,7 @@ export class GstIngComponent implements OnInit {
   gastoMesCasa: IGasto[] = [];
   gastoMesCoche: IGasto[] = [];
   gastoMesOtro: IGasto[] = [];
+  
   /**
    * opciones el input select
    */
@@ -136,8 +146,6 @@ export class GstIngComponent implements OnInit {
     this.gastosService.getGastos().subscribe((gastos) => {
       this.gastos = gastos;
       this.gastoCasa = this.gastos.filter((gasto) => gasto.tipo === 'casa');
-
-      console.log(this.gastoCasa, 45);
       let suma = 0;
       for (let i = 0; i < this.gastoCasa.length; i++) {
         suma += this.gastoCasa[i].importe;
@@ -153,7 +161,6 @@ export class GstIngComponent implements OnInit {
         suma += this.gastos[i].importe;
       }
       this.sumaG = suma;
-      console.log(this.sumaG, 91);
       this.gastosCompletados.next(this.sumaG);
       this.updateChartData(this.sumaG, this.sumaIngreso);
     });
@@ -168,19 +175,20 @@ export class GstIngComponent implements OnInit {
     this.getGastosMesSeleccionadoMoto(month);
     this.getGastosMesSeleccionadoSua(month);
     this.getGastosMesSeleccionadoCoche(month);
+    this.getGastosAnual();
+    this.getIngresosAnual();
   }
   private getIngresosMesSeleccionado(month: string) {
     this.ingresosService
       .getIngresosMesSeleccionado(month)
       .subscribe((ingresos) => {
         this.ingresos = ingresos;
-        console.log(this.ingresos, 101);
         let suma = 0;
         for (let i = 0; i < this.ingresos.length; i++) {
           suma += this.ingresos[i].importe;
         }
         this.sumaIngreso = suma;
-        this.totalIngreso.next(this.sumaIngreso);
+        this.totalIngresoMes.next(this.sumaIngreso);
         this.updateChartData(this.sumaG, this.sumaIngreso);
       });
   }
@@ -192,7 +200,7 @@ export class GstIngComponent implements OnInit {
         suma += this.gastos[i].importe;
       }
       this.sumaG = suma;
-      this.totalIngreso.next(this.sumaIngreso);
+      this.totalIngresoMes.next(this.sumaIngreso);
       this.updateChartData(this.sumaG, this.sumaIngreso);
     });
   }
@@ -215,11 +223,9 @@ export class GstIngComponent implements OnInit {
         this.sumaGastoMesCoche,
         this.sumaGastoMesOtro,
       );
-      console.log(this.sumaGastoMesPersonal, 'personal');
     });
   }
   getGastosMesSeleccionadoMoto(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesMoto = gasto.filter((item) => item.tipo === TypeGasto.moto);
       let suma = 0;
@@ -236,11 +242,9 @@ export class GstIngComponent implements OnInit {
         this.sumaGastoMesCoche,
         this.sumaGastoMesOtro,
       );
-      console.log(this.sumaGastoMesMoto, 'moto');
     });
   }
   getGastosMesSeleccionadoCasa(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesCasa = gasto.filter((item) => item.tipo === TypeGasto.casa);
       let suma = 0;
@@ -260,7 +264,6 @@ export class GstIngComponent implements OnInit {
     });
   }
   getGastosMesSeleccionadoSua(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesSua = gasto.filter((item) => item.tipo === TypeGasto.sua);
       let suma = 0;
@@ -280,7 +283,6 @@ export class GstIngComponent implements OnInit {
     });
   }
   getGastosMesSeleccionadoCoche(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesCoche = gasto.filter(
         (item) => item.tipo === TypeGasto.coche
@@ -302,7 +304,6 @@ export class GstIngComponent implements OnInit {
     });
   }
   getGastosMesSeleccionadoOtro(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesOtro = gasto.filter(
         (item) => item.tipo === TypeGasto.otro
@@ -323,8 +324,32 @@ export class GstIngComponent implements OnInit {
       );
     });
   }
-
-
+  private getGastosAnual(){
+    this.gastosService.getGastos().subscribe((gastos) => {
+      this.gastosTotalAnio = gastos;
+      let suma = 0;
+      for (let i = 0; i < this.gastos.length; i++) {
+        suma += this.gastosTotalAnio[i].importe;
+      }
+      this.sumaGastoAnio = suma;
+      console.log(this.sumaGastoAnio, 91);
+      this.totalsumaGastoAnio.next(this.sumaGastoAnio);
+      this.updateChartAnio(this.sumaGastoAnio, this.ingresoAnio);
+    });
+  }
+  private getIngresosAnual(){
+    this.ingresosService.getIngreso().subscribe((gastos) => {
+      this.ingresosTotalAnio = gastos;
+      let suma = 0;
+      for (let i = 0; i < this.ingresosTotalAnio.length; i++) {
+        suma += this.ingresosTotalAnio[i].importe;
+      }
+      this.ingresoAnio = suma;
+      console.log(this.ingresoAnio, 348);
+      this.totalIngresoAnio.next(this.ingresoAnio);
+      this.updateChartAnio(this.sumaGastoAnio, this.ingresoAnio);
+    });
+  }
   private updateChartData(sumaGastoMesPersonal: number, ingresos: number) {
     const newData = {
       labels: this.barChartLabels,
@@ -345,6 +370,13 @@ export class GstIngComponent implements OnInit {
       datasets: [{ data: [sumaGastoMesPersonal, sumaGastoMesMoto,sumaGastoMesCasa,sumaGastoMesSua,sumaGastoMesCoche,sumaGastoMesOtro,] }],
     };
     this.barChartData2 = newData;
+  }
+  private updateChartAnio(sumaGastoAnio: number, ingresoAnio: number) {
+    const newData = {
+      labels: this.barChartLabels3,
+      datasets: [{ data: [sumaGastoAnio, ingresoAnio] }],
+    };
+    this.barChartData3 = newData;
   }
   public barChartOptions: any = {
     responsive: true,

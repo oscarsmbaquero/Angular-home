@@ -14,6 +14,10 @@
     </mat-form-field>
   </div>
   <div *ngIf="sumaG && sumaIngreso; else notDatos">
+    <div class="title">
+      <p class="p">Gasto Mes {{selectedMonth}}</p>  
+    </div>
+    
     <canvas
       baseChart
       class="chart"
@@ -29,13 +33,32 @@
   <ng-template #notDatos>
     <h3>No hay datos disponibles.</h3>
   </ng-template>
-  <div *ngIf="sumaGastoMesPersonal">
+  <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa && sumaGastoMesPersonal && sumaGastoMesMoto">
+    <div class="title">
+      <p class="p">Detalle Mes {{selectedMonth}}</p>  
+    </div>
     <canvas
       baseChart
       class="chart"
       [data]="barChartData2"
       [type]="barChartType2"
       [labels]="barChartLabels2"
+      [options]="barChartOptions"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>
+  <div *ngIf="sumaGastoMesPersonal">
+    <div class="title">
+      <p class="p">Total año </p>  
+    </div>
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData3"
+      [type]="barChartType3"
+      [labels]="barChartLabels3"
       [options]="barChartOptions"
       width="200"
       height="200"
