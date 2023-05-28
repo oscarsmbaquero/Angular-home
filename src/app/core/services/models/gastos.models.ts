@@ -9,15 +9,13 @@ export interface IGasto {
 }
 export enum TypeGasto {
   "casa" = "casa",
-  "finca" = "finca",
   "moto" = "moto",
   "coche" = "coche",
   "sua"= "sua",
-  personal = "personal"
+  "personal" = "personal",
+  "otro" = "otro"
 }
 export const TypeOfCar = Object.values(TypeGasto);
-// export interface ISong{
-//     title:string
-// }
+
 
 

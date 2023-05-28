@@ -21,14 +21,18 @@ export class GstIngComponent implements OnInit {
   private gastosCompletados = new Subject<number>();
   private totalIngreso = new Subject<number>();
   private gastoMesPersonalTotal = new Subject<number>();
-
-
+  private gastoMesMotoTotal = new Subject<number>();
+  private gastoMesCasaTotal = new Subject<number>();
+  private gastoMesSuaTotal = new Subject<number>();
+  private gastoMesCocheTotal = new Subject<number>();
+  private gastoMesOtroTotal = new Subject<number>();
 
   @Input() public title: string = 'Gastos e Ingresos';
 
   @Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
 
-  @Input('labels') batChartLabel2: string[] = ['Personal','Moto','Coche']
+  //@Input('labels2') batChartLabels2: string[] = ['Personal','Moto','Coche'];
+  @Input('labels2') barChartLabels2: string[] = ['Personal', 'Moto', 'Casa','Sua','Coche','Otro'];
 
   @Input('data') barChartData: ChartData<'bar'> = {
     labels: this.barChartLabels,
@@ -41,60 +45,41 @@ export class GstIngComponent implements OnInit {
   public barChartType: ChartType = 'bar';
 
   @Input('data2') barChartData2: ChartData<'bar'> = {
-    labels: this.barChartLabels,
+    labels: this.barChartLabels2,
     datasets: [
       {
-        data: [0,0],
+        data: [0, 0, 0,0,0,0],
+        backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)','rgba(0, 0, 255, 0.5)','rgba(0, 0, 255, 0.5)'],
       },
     ],
   };
-  public barChartType2: ChartType = 'bar';
-    /**
-   *Almacenamos los gastos en un array vacio
-   */
-  gastos: IGasto[] = [];
+  public barChartType2: ChartType = 'bar'; 
   /**
-   * Almacenamos los ingresos en un array vacio
-   */
-  ingresos: Iingreso[] = [];
-  /**
-   *flag para guardar la suma
+   *flag para guardar la suma de lo que pintaremos en la grafica
    */
   sumaG: number = 0;
-  /**
-   *flag para guardar la suma
-   */
   sumaIngreso: number = 0;
-  /**
-   * suma de gasto Personal
-   */
-  sumaGastoMesPersonal: number =0;
-  /**
-   *
-   */
-  gastoCasa: IGasto[] = [];
-  /**
-   *
-   */
-  gastoMoto: IGasto[] = [];
+  sumaGastoMesPersonal: number = 0;
+  sumaGastoMesMoto: number = 0;
+  sumaGastoMesCasa: number = 0;
+  sumaGastoMesSua: number = 0;
+  sumaGastoMesCoche: number = 0;
+  sumaGastoMesOtro: number = 0;
+  
   /**
    *
    */
-  gastoMesPersonal: IGasto[] = [];
-  /**
-   *
-   */
-  gastoMesMoto: IGasto[] = [];
-  /**
-   * 
-   */
-  gastoMesSua: IGasto[]=[];
-/**
- * 
- */
-  gastoMesCasa : IGasto[]=[];
+  gastos: IGasto[] = [];
+  ingresos: Iingreso[] = [];
 
-  gastoMesCoche : IGasto[]=[];
+  gastoCasa: IGasto[] = [];
+  gastoMoto: IGasto[] = [];
+  gastoMesPersonal: IGasto[] = [];
+  gastoMesMoto: IGasto[] = [];
+  gastoMesSua: IGasto[] = [];
+  gastoMesCasa: IGasto[] = [];
+  gastoMesCoche: IGasto[] = [];
+  gastoMesOtro: IGasto[] = [];
   /**
    * opciones el input select
    */
@@ -113,14 +98,14 @@ export class GstIngComponent implements OnInit {
     'Dicember',
   ];
   selectedMonth: any;
-  mesSeleccionado: any;
+//  mesSeleccionado: any;
+
   constructor(
     private gastosService: GastosService,
     private ingresosService: IngresosService
   ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   /**
    * Total gasto casa
    */
@@ -159,7 +144,7 @@ export class GstIngComponent implements OnInit {
       }
       this.sumaG = suma;
     });
-  }  
+  }
   private getGastosMes() {
     this.gastosService.getGastosMes().subscribe((gastos) => {
       this.gastos = gastos;
@@ -212,46 +197,86 @@ export class GstIngComponent implements OnInit {
     });
   }
   getGastosMesSeleccionadoPersonal(month: string) {
-    console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesPersonal = gasto.filter(
         (item) => item.tipo === TypeGasto.personal
       );
       let suma = 0;
       for (let i = 0; i < this.gastoMesPersonal.length; i++) {
-        suma += this.gastos[i].importe;
+        suma += this.gastoMesPersonal[i].importe;
       }
       this.sumaGastoMesPersonal = suma;
       this.gastoMesPersonalTotal.next(this.sumaGastoMesPersonal);
-      this.updateChartDataTipo( this.sumaGastoMesPersonal,);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
+      );
       console.log(this.sumaGastoMesPersonal, 'personal');
     });
   }
   getGastosMesSeleccionadoMoto(month: string) {
     console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
-      this.gastoMesMoto = gasto.filter(
-        (item) => item.tipo === TypeGasto.moto
+      this.gastoMesMoto = gasto.filter((item) => item.tipo === TypeGasto.moto);
+      let suma = 0;
+      for (let i = 0; i < this.gastoMesMoto.length; i++) {
+        suma += this.gastoMesMoto[i].importe;
+      }
+      this.sumaGastoMesMoto = suma;
+      this.gastoMesMotoTotal.next(this.sumaGastoMesMoto);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
       );
-      console.log(this.gastoMesMoto, 'moto');
+      console.log(this.sumaGastoMesMoto, 'moto');
     });
   }
   getGastosMesSeleccionadoCasa(month: string) {
     console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
-      this.gastoMesCasa = gasto.filter(
-        (item) => item.tipo === TypeGasto.casa
+      this.gastoMesCasa = gasto.filter((item) => item.tipo === TypeGasto.casa);
+      let suma = 0;
+      for (let i = 0; i < this.gastoMesCasa.length; i++) {
+        suma += this.gastoMesCasa[i].importe;
+      }
+      this.sumaGastoMesCasa = suma;
+      this.gastoMesCasaTotal.next(this.sumaGastoMesCasa);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
       );
-      console.log(this.gastoMesCasa, 'casa');
     });
   }
   getGastosMesSeleccionadoSua(month: string) {
     console.log(month);
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
-      this.gastoMesSua = gasto.filter(
-        (item) => item.tipo === TypeGasto.sua
+      this.gastoMesSua = gasto.filter((item) => item.tipo === TypeGasto.sua);
+      let suma = 0;
+      for (let i = 0; i < this.gastoMesSua.length; i++) {
+        suma += this.gastoMesSua[i].importe;
+      }
+      this.sumaGastoMesSua = suma;
+      this.gastoMesSuaTotal.next(this.sumaGastoMesSua);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
       );
-      console.log(this.gastoMesSua, 'sua');
     });
   }
   getGastosMesSeleccionadoCoche(month: string) {
@@ -260,9 +285,46 @@ export class GstIngComponent implements OnInit {
       this.gastoMesCoche = gasto.filter(
         (item) => item.tipo === TypeGasto.coche
       );
-      console.log(this.gastoMesCoche, 'coche');
+      let suma = 0;
+      for (let i = 0; i < this.gastoMesCoche.length; i++) {
+        suma += this.gastoMesCoche[i].importe;
+      }
+      this.sumaGastoMesCoche = suma;
+      this.gastoMesCocheTotal.next(this.sumaGastoMesCoche);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
+      );
     });
   }
+  getGastosMesSeleccionadoOtro(month: string) {
+    console.log(month);
+    this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
+      this.gastoMesOtro = gasto.filter(
+        (item) => item.tipo === TypeGasto.otro
+      );
+      let suma = 0;
+      for (let i = 0; i < this.gastoMesOtro.length; i++) {
+        suma += this.gastoMesOtro[i].importe;
+      }
+      this.sumaGastoMesOtro = suma;
+      this.gastoMesOtroTotal.next(this.sumaGastoMesOtro);
+      this.updateChartDataTipo(
+        this.sumaGastoMesPersonal,
+        this.sumaGastoMesMoto,
+        this.sumaGastoMesCasa,
+        this.sumaGastoMesSua,
+        this.sumaGastoMesCoche,
+        this.sumaGastoMesOtro,
+      );
+    });
+  }
+
+
   private updateChartData(sumaGastoMesPersonal: number, ingresos: number) {
     const newData = {
       labels: this.barChartLabels,
@@ -270,12 +332,36 @@ export class GstIngComponent implements OnInit {
     };
     this.barChartData = newData;
   }
-  private updateChartDataTipo(sumaGastoMesPersonal: number) {
+  private updateChartDataTipo(
+    sumaGastoMesPersonal: number,
+    sumaGastoMesMoto: number,
+    sumaGastoMesCasa:number,
+    sumaGastoMesSua:number,
+    sumaGastoMesCoche:number,
+    sumaGastoMesOtro:number,
+  ) {
     const newData = {
-      labels: this.barChartLabels,
-      datasets: [{ data: [sumaGastoMesPersonal] }],
+      labels: this.barChartLabels2,
+      datasets: [{ data: [sumaGastoMesPersonal, sumaGastoMesMoto,sumaGastoMesCasa,sumaGastoMesSua,sumaGastoMesCoche,sumaGastoMesOtro,] }],
     };
     this.barChartData2 = newData;
   }
-
+  public barChartOptions: any = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    datasets: {
+      bar: {
+        backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)','rgba(220, 20, 102, 0.5)','rgba(115,110,5,1)','rgba(250, 0, 255, 0.5)'],
+      },
+    },
+  };
 }

@@ -1,6 +1,6 @@
 
 .main {
-  min-height: 100px;
+  min-height: 100vh;
   max-height: 1800px;
    /* height: auto; */
   height: 100%;
@@ -15,7 +15,7 @@
 }
 
 .footer {
-  flex-shrink: 1;
+  flex-shrink: 0;
 }
  
   

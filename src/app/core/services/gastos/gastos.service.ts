@@ -69,7 +69,6 @@ export class GastosService implements OnInit{
       map(gastos => gastos.filter(gasto => {
         const gastoDate = new Date(gasto.fecha);
         const gastoMonth = gastoDate.getMonth();
-        console.log(gastoMonth, 987)
         return gastoMonth === monthIndex[month] && gastoDate.getTime() >= firstDayOfMonth.getTime() && gastoDate.getTime() <= lastDayOfMonth.getTime();
       }))
     );

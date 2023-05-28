@@ -16,6 +16,7 @@
     .layout {
       flex-direction: column; /* apila los elementos verticalmente */
       align-items: center; /* centra los elementos verticalmente */
+      min-height: 100vh;
     }
     
     .layout > div {
