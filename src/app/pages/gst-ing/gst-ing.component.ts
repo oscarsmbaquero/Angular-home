@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
 import { Subject } from 'rxjs';
 import { GastosService } from 'src/app/core/services/gastos/gastos.service';
@@ -14,8 +14,8 @@ import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 })
 export class GstIngComponent implements OnInit {
 
-  private gastosCompletados = new Subject<number>();
-  private totalIngresoMes = new Subject<number>();
+  // private gastosCompletados = new Subject<number>();
+  // private totalIngresoMes = new Subject<number>();
 
   private totalIngresoAnio = new Subject<number>();
   private totalsumaGastoAnio = new Subject<number>();
@@ -29,18 +29,18 @@ export class GstIngComponent implements OnInit {
 
   @Input() public title: string = 'Gastos e Ingresos';
 
-  @Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
+  // @Input('labels') barChartLabels: string[] = ['Gastos', 'Ingresos'];
   @Input('labels2') barChartLabels2: string[] = ['Personal', 'Moto', 'Casa','Sua','Coche','Otro'];
   @Input('labels3') barChartLabels3: string[] = ['T.Gastos', 'T.Ingresos'];
-  @Input('data') barChartData: ChartData<'bar'> = {
-    labels: this.barChartLabels,
-    datasets: [
-      {
-        data: [0, 0],
-      },
-    ],
-  };
-  public barChartType: ChartType = 'bar';
+  // @Input('data') barChartData: ChartData<'bar'> = {
+  //   labels: this.barChartLabels,
+  //   datasets: [
+  //     {
+  //       data: [0, 0],
+  //     },
+  //   ],
+  // };
+  //  public barChartType: ChartType = 'bar';
 
   @Input('data2') barChartData2: ChartData<'bar'> = {
     labels: this.barChartLabels2,
@@ -64,9 +64,9 @@ export class GstIngComponent implements OnInit {
   public barChartType3: ChartType = 'bar';
   /**
    *flag para guardar la suma de lo que pintaremos en la grafica
-   */
-  sumaG: number = 0;
-  sumaIngreso: number = 0;
+  */
+  // sumaG: number = 0;
+  // sumaIngreso: number = 0;
   sumaGastoMesPersonal: number = 0;
   sumaGastoMesMoto: number = 0;
   sumaGastoMesCasa: number = 0;
@@ -89,10 +89,12 @@ export class GstIngComponent implements OnInit {
   gastoMesCasa: IGasto[] = [];
   gastoMesCoche: IGasto[] = [];
   gastoMesOtro: IGasto[] = [];
-  
+
+  @Output() showGrafics = new EventEmitter<string>();
+  pruebaInput: string='';
   /**
    * opciones el input select
-   */
+  */
   months = [
     'January',
     'February',
@@ -110,6 +112,7 @@ export class GstIngComponent implements OnInit {
   selectedMonth: any;
 //  mesSeleccionado: any;
 
+
   constructor(
     private gastosService: GastosService,
     private ingresosService: IngresosService
@@ -119,57 +122,57 @@ export class GstIngComponent implements OnInit {
   /**
    * Total gasto casa
    */
-  private getTotalGastosCasa() {
-    this.gastosService.getGastosMes().subscribe((gastos) => {
-      this.gastos = gastos;
-      this.gastoCasa = this.gastos.filter((gasto) => gasto.tipo === 'casa');
-      let suma = 0;
-      for (let i = 0; i < this.gastoCasa.length; i++) {
-        suma += this.gastoCasa[i].importe;
-      }
-      this.sumaG = suma;
-    });
-  }
-  private getTotalGastosMoto() {
-    this.gastosService.getGastos().subscribe((gastos) => {
-      this.gastos = gastos;
-      this.gastoMoto = this.gastos.filter((gasto) => gasto.tipo === 'moto');
-      let suma = 0;
-      for (let i = 0; i < this.gastoMoto.length; i++) {
-        suma += this.gastoMoto[i].importe;
-      }
-      this.sumaG = suma;
-      return this.sumaG;
-    });
-  }
-  private getTotalGastosPersonal() {
-    this.gastosService.getGastos().subscribe((gastos) => {
-      this.gastos = gastos;
-      this.gastoCasa = this.gastos.filter((gasto) => gasto.tipo === 'casa');
-      let suma = 0;
-      for (let i = 0; i < this.gastoCasa.length; i++) {
-        suma += this.gastoCasa[i].importe;
-      }
-      this.sumaG = suma;
-    });
-  }
-  private getGastosMes() {
-    this.gastosService.getGastosMes().subscribe((gastos) => {
-      this.gastos = gastos;
-      let suma = 0;
-      for (let i = 0; i < this.gastos.length; i++) {
-        suma += this.gastos[i].importe;
-      }
-      this.sumaG = suma;
-      this.gastosCompletados.next(this.sumaG);
-      this.updateChartData(this.sumaG, this.sumaIngreso);
-    });
-  }
+  // private getTotalGastosCasa() {
+  //   this.gastosService.getGastosMes().subscribe((gastos) => {
+  //     this.gastos = gastos;
+  //     this.gastoCasa = this.gastos.filter((gasto) => gasto.tipo === 'casa');
+  //     let suma = 0;
+  //     for (let i = 0; i < this.gastoCasa.length; i++) {
+  //       suma += this.gastoCasa[i].importe;
+  //     }
+  //     this.sumaG = suma;
+  //   });
+  // }
+  // private getTotalGastosMoto() {
+  //   this.gastosService.getGastos().subscribe((gastos) => {
+  //     this.gastos = gastos;
+  //     this.gastoMoto = this.gastos.filter((gasto) => gasto.tipo === 'moto');
+  //     let suma = 0;
+  //     for (let i = 0; i < this.gastoMoto.length; i++) {
+  //       suma += this.gastoMoto[i].importe;
+  //     }
+  //     this.sumaG = suma;
+  //     return this.sumaG;
+  //   });
+  // }
+  // private getTotalGastosPersonal() {
+  //   this.gastosService.getGastos().subscribe((gastos) => {
+  //     this.gastos = gastos;
+  //     this.gastoCasa = this.gastos.filter((gasto) => gasto.tipo === 'casa');
+  //     let suma = 0;
+  //     for (let i = 0; i < this.gastoCasa.length; i++) {
+  //       suma += this.gastoCasa[i].importe;
+  //     }
+  //     this.sumaG = suma;
+  //   });
+  // }
+  // private getGastosMes() {
+  //   this.gastosService.getGastosMes().subscribe((gastos) => {
+  //     this.gastos = gastos;
+  //     let suma = 0;
+  //     for (let i = 0; i < this.gastos.length; i++) {
+  //       suma += this.gastos[i].importe;
+  //     }
+  //     this.sumaG = suma;
+  //     this.gastosCompletados.next(this.sumaG);
+  //     this.updateChartData(this.sumaG, this.sumaIngreso);
+  //   });
+  // }
   filterByMonth(event: any) {
     const month = event.value;
     this.selectedMonth = month;
-    this.getIngresosMesSeleccionado(month);
-    this.getGastosMesSeleccionado(month);
+    // this.getIngresosMesSeleccionado(month);
+    // this.getGastosMesSeleccionado(month);
     this.getGastosMesSeleccionadoPersonal(month);
     this.getGastosMesSeleccionadoCasa(month);
     this.getGastosMesSeleccionadoMoto(month);
@@ -178,32 +181,32 @@ export class GstIngComponent implements OnInit {
     this.getGastosAnual();
     this.getIngresosAnual();
   }
-  private getIngresosMesSeleccionado(month: string) {
-    this.ingresosService
-      .getIngresosMesSeleccionado(month)
-      .subscribe((ingresos) => {
-        this.ingresos = ingresos;
-        let suma = 0;
-        for (let i = 0; i < this.ingresos.length; i++) {
-          suma += this.ingresos[i].importe;
-        }
-        this.sumaIngreso = suma;
-        this.totalIngresoMes.next(this.sumaIngreso);
-        this.updateChartData(this.sumaG, this.sumaIngreso);
-      });
-  }
-  private getGastosMesSeleccionado(month: string) {
-    this.gastosService.getGastosMesSeleccionado(month).subscribe((gastos) => {
-      this.gastos = gastos;
-      let suma = 0;
-      for (let i = 0; i < this.gastos.length; i++) {
-        suma += this.gastos[i].importe;
-      }
-      this.sumaG = suma;
-      this.totalIngresoMes.next(this.sumaIngreso);
-      this.updateChartData(this.sumaG, this.sumaIngreso);
-    });
-  }
+  // private getIngresosMesSeleccionado(month: string) {
+  //   this.ingresosService
+  //     .getIngresosMesSeleccionado(month)
+  //     .subscribe((ingresos) => {
+  //       this.ingresos = ingresos;
+  //       let suma = 0;
+  //       for (let i = 0; i < this.ingresos.length; i++) {
+  //         suma += this.ingresos[i].importe;
+  //       }
+  //       this.sumaIngreso = suma;
+  //       this.totalIngresoMes.next(this.sumaIngreso);
+  //       this.updateChartData(this.sumaG, this.sumaIngreso);
+  //     });
+  // }
+  // private getGastosMesSeleccionado(month: string) {
+  //   this.gastosService.getGastosMesSeleccionado(month).subscribe((gastos) => {
+  //     this.gastos = gastos;
+  //     let suma = 0;
+  //     for (let i = 0; i < this.gastos.length; i++) {
+  //       suma += this.gastos[i].importe;
+  //     }
+  //     this.sumaG = suma;
+  //     this.totalIngresoMes.next(this.sumaIngreso);
+  //     this.updateChartData(this.sumaG, this.sumaIngreso);
+  //   });
+  // }
   getGastosMesSeleccionadoPersonal(month: string) {
     this.gastosService.getGastosMesSeleccionado(month).subscribe((gasto) => {
       this.gastoMesPersonal = gasto.filter(
@@ -350,13 +353,13 @@ export class GstIngComponent implements OnInit {
       this.updateChartAnio(this.sumaGastoAnio, this.ingresoAnio);
     });
   }
-  private updateChartData(sumaGastoMesPersonal: number, ingresos: number) {
-    const newData = {
-      labels: this.barChartLabels,
-      datasets: [{ data: [sumaGastoMesPersonal, ingresos] }],
-    };
-    this.barChartData = newData;
-  }
+  // private updateChartData(sumaGastoMesPersonal: number, ingresos: number) {
+  //   const newData = {
+  //     labels: this.barChartLabels,
+  //     datasets: [{ data: [sumaGastoMesPersonal, ingresos] }],
+  //   };
+  //   this.barChartData = newData;
+  // }
   private updateChartDataTipo(
     sumaGastoMesPersonal: number,
     sumaGastoMesMoto: number,
@@ -396,4 +399,9 @@ export class GstIngComponent implements OnInit {
       },
     },
   };
+  showGraficas(event:any){
+    this.pruebaInput = event.value;
+    console.log(this.pruebaInput,402);
+    // this.showGrafics.emit(event)
+  }
 }

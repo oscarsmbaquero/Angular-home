@@ -11,12 +11,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgChartsModule } from 'ng2-charts';
+import { GraficaMesComponent } from './components/grafica-mes/grafica-mes.component';
 
 
 
 @NgModule({
   declarations: [
-    GstIngComponent
+    GstIngComponent,
+    GraficaMesComponent
   ],
   imports: [
     CommonModule,

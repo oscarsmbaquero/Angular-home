@@ -6,6 +6,7 @@
         disableRipple
         formControlName="month"
         (selectionChange)="filterByMonth($event)"
+        (selectionChange)="showGraficas($event)"
       >
         <mat-option *ngFor="let month of months" [value]="month">{{
           month
@@ -13,7 +14,10 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div *ngIf="sumaG && sumaIngreso; else notDatos">
+  <app-grafica-mes
+  [pruebaInput]="pruebaInput"
+  ></app-grafica-mes>
+  <!-- <div *ngIf="sumaG && sumaIngreso; else notDatos">
     <div class="title">
       <p class="p">Gasto Mes {{selectedMonth}}</p>  
     </div>
@@ -29,7 +33,7 @@
       height="200"
     >
     </canvas>
-  </div>
+  </div> -->
   <ng-template #notDatos>
     <h3>No hay datos disponibles.</h3>
   </ng-template>

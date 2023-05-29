@@ -1,0 +1,17 @@
+<div *ngIf="sumaGastos && sumaIngreso">
+    <div class="title">
+      <p class="p">Gasto Mes {{pruebaInput}}</p>  
+    </div>
+    
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData"
+      [type]="barChartType"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>
