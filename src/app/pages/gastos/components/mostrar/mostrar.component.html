@@ -49,7 +49,7 @@
 <div class="button">
   
   <div *ngIf="suma; else nosuma">
-    <button mat-raised-button color="warn" style="border-radius: 29px;" (click)="resetSuma()">{{ suma }} €</button>
+    <button mat-raised-button color="warn" class="button" style="border-radius: 29px" (click)="resetSuma()">{{ suma }} €</button>
     <!-- <button (click)="sumaImportes()">{{ suma }}</button> -->
   </div>
   <ng-template #nosuma>

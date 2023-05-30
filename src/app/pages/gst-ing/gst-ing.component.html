@@ -17,6 +17,25 @@
   <app-grafica-mes
   [pruebaInput]="pruebaInput"
   ></app-grafica-mes>
+  <app-grafica-tipo
+  [pruebaInput]="pruebaInput"
+  ></app-grafica-tipo>
+  <div>
+    <div class="title">
+      <p class="p">Total año </p>  
+    </div>
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData"
+      [type]="barChartType"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>
   <!-- <div *ngIf="sumaG && sumaIngreso; else notDatos">
     <div class="title">
       <p class="p">Gasto Mes {{selectedMonth}}</p>  
@@ -37,7 +56,8 @@
   <ng-template #notDatos>
     <h3>No hay datos disponibles.</h3>
   </ng-template>
-  <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa && sumaGastoMesPersonal && sumaGastoMesMoto">
+ 
+  <!-- <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa && sumaGastoMesPersonal && sumaGastoMesMoto">
     <div class="title">
       <p class="p">Detalle Mes {{selectedMonth}}</p>  
     </div>
@@ -52,21 +72,6 @@
       height="200"
     >
     </canvas>
-  </div>
-  <div *ngIf="sumaGastoMesPersonal">
-    <div class="title">
-      <p class="p">Total año </p>  
-    </div>
-    <canvas
-      baseChart
-      class="chart"
-      [data]="barChartData3"
-      [type]="barChartType3"
-      [labels]="barChartLabels3"
-      [options]="barChartOptions"
-      width="200"
-      height="200"
-    >
-    </canvas>
-  </div>
+  </div> -->
+  
 </div>
