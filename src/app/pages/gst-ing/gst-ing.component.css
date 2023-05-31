@@ -8,7 +8,7 @@
   
   .layout > div {
     flex-basis: 50%; /* hace que cada elemento ocupe el 50% del ancho del contenedor */
-    padding: 20px 70px; /* agrega un espacio horizontal entre los elementos */
+    
   }
   
   @media (max-width: 600px) {

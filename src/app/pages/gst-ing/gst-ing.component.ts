@@ -83,7 +83,7 @@ export class GstIngComponent implements OnInit {
     this.gastosService.getGastos().subscribe((gastos) => {
       this.gastosTotalAnio = gastos;
       let suma = 0;
-      for (let i = 0; i < this.gastos.length; i++) {
+      for (let i = 0; i < this.gastosTotalAnio.length; i++) {
         suma += this.gastosTotalAnio[i].importe;
       }
       this.sumaGastoAnio = suma;
