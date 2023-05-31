@@ -17,3 +17,24 @@
     >
     </canvas>
   </div>
+
+  <!--grafica doughnut-->
+  <div *ngIf="sumaGastoMesPersonal && sumaGastoMesMoto && sumaGastoMesCasa
+    && sumaGastoMesSua && sumaGastoMesCasa && sumaGastoMesOtro
+     && sumaGastoMesCoche && sumaGastoMesOtro">
+    <div class="title">
+      <p class="p">Detalle Mes {{pruebaInput}}</p>  
+    </div>
+    
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData2"
+      [type]="barChartType2"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>

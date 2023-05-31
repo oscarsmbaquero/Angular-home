@@ -34,6 +34,16 @@ export class GraficaTipoComponent {
     ],
   };
   public barChartType: ChartType = 'bar'; 
+  @Input('data') barChartData2: ChartData<'doughnut'> = {
+    labels: this.barChartLabels,
+    datasets: [
+      {
+        data: [0, 0, 0,0,0,0],
+        backgroundColor: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)','rgba(0, 0, 255, 0.5)','rgba(0, 0, 255, 0.5)'],
+      },
+    ],
+  };
+  public barChartType2: ChartType = 'doughnut'; 
 
   constructor(
     private gastosService: GastosService,
@@ -203,6 +213,11 @@ export class GraficaTipoComponent {
       datasets: [{ data: [sumaGastoMesPersonal, sumaGastoMesMoto,sumaGastoMesCasa,sumaGastoMesSua,sumaGastoMesCoche,sumaGastoMesOtro,] }],
     };
     this.barChartData = newData;
+    const newData2 = {
+      labels: this.barChartLabels,
+      datasets: [{ data: [sumaGastoMesPersonal, sumaGastoMesMoto,sumaGastoMesCasa,sumaGastoMesSua,sumaGastoMesCoche,sumaGastoMesOtro,] }],
+    };
+    this.barChartData2 = newData2;
   }
   public barChartOptions: any = {
     responsive: true,

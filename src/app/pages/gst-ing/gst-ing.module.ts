@@ -17,12 +17,13 @@ import { GraficaAnioComponent } from './components/grafica-anio/grafica-anio.com
 
 
 
+
 @NgModule({
   declarations: [
     GstIngComponent,
     GraficaMesComponent,
     GraficaTipoComponent,
-    GraficaAnioComponent
+    GraficaAnioComponent,
   ],
   imports: [
     CommonModule,
