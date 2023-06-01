@@ -4,6 +4,9 @@ import { GastosService } from 'src/app/core/services/gastos/gastos.service';
 import { IGasto } from 'src/app/core/services/models/gastos.models';
 import { map } from 'rxjs/operators';
 
+interface GastoConColor extends IGasto {
+  color: string;
+}
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -53,23 +56,72 @@ resetSuma(){
   this.suma = 0;  
 }
 
+// private getGastos(textoDigitado?: string) {
+//   if (textoDigitado) {
+//     this.gastosService.getGastos().pipe(
+//       map(gastos => {
+//         return gastos.filter(gasto => gasto.descripcion.toLowerCase().includes(textoDigitado.toLowerCase())
+//         ||
+//           gasto.tipo.toLowerCase().includes(textoDigitado.toLowerCase()))
+//       })
+//     ).subscribe(filteredCars => {
+//       this.gastos = filteredCars;
+//     });
+//   } else {
+//     this.gastosService.getGastos().subscribe(gasto => {
+//       this.gastos = gasto;
+//     });
+//   }
+
+// }
+
+
 private getGastos(textoDigitado?: string) {
+  const currentMonth = new Date().getMonth(); // Obtener el mes actual (0-11)
+
   if (textoDigitado) {
     this.gastosService.getGastos().pipe(
       map(gastos => {
-        return gastos.filter(gasto => gasto.descripcion.toLowerCase().includes(textoDigitado.toLowerCase())
-        ||
-          gasto.tipo.toLowerCase().includes(textoDigitado.toLowerCase()))
+        return gastos.filter(gasto =>
+          gasto.descripcion.toLowerCase().includes(textoDigitado.toLowerCase()) ||
+          gasto.tipo.toLowerCase().includes(textoDigitado.toLowerCase())
+        ).map(gasto => {
+          const gastoConColor: GastoConColor = { ...gasto, color: '' };
+          // Obtener el mes del gasto (0-11)
+          const gastoMonth = new Date(gasto.fecha).getMonth();
+          if (gastoMonth > currentMonth) {
+            gastoConColor.color = 'red'; // Asignar un color para los meses futuros
+          } else {
+            gastoConColor.color = 'blue'; // Asignar otro color para los meses pasados o iguales al presente
+          }
+          return gastoConColor;
+        });
       })
-    ).subscribe(filteredCars => {
-      this.gastos = filteredCars;
+    ).subscribe(filteredGastos => {
+      this.gastos = filteredGastos;
     });
   } else {
-    this.gastosService.getGastos().subscribe(gasto => {
-      this.gastos = gasto;
+    this.gastosService.getGastos().pipe(
+      map(gastos => {
+        return gastos.map(gasto => {
+          const gastoConColor: GastoConColor = { ...gasto, color: '' };
+          // Obtener el mes del gasto (0-11)
+          const gastoMonth = new Date(gasto.fecha).getMonth();
+          if (gastoMonth > currentMonth) {
+            console.log('mayor mes gasto')
+            gastoConColor.color = 'red'; // Asignar un color para los meses futuros
+          } else {
+            gastoConColor.color = 'blue'; // Asignar otro color para los meses pasados o iguales al presente
+          }
+          return gastoConColor;
+        });
+      })
+    ).subscribe(gastos => {
+      this.gastos = gastos;
     });
   }
 }
+
 capturarTexto(event: any) {
   let textoDigitado = event.target.value;
   this.getGastos(textoDigitado);
