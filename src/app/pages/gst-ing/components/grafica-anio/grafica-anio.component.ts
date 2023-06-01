@@ -51,7 +51,6 @@ export class GraficaAnioComponent {
     this.getGastosAnual();
     this.getIngresosAnual();
   }
-
   private getGastosAnual(){
     this.gastosService.getGastos().subscribe((gastos) => {
       this.gastosTotalAnio = gastos;

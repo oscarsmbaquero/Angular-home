@@ -63,7 +63,7 @@ resetSuma(){
 
 delete(id: string): void {
   console.log(id);
-  const confirmation = window.confirm('¿Estás seguro de que deseas eliminar este coche?');
+  const confirmation = window.confirm('¿Estás seguro de que deseas eliminar este registro?');
 
   if (confirmation) {
     this.gastosService.deleteGasto(id).subscribe((response) => {
