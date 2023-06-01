@@ -2,6 +2,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    
   }
   .p{
     color:red;
@@ -9,6 +10,7 @@
   }
   .graficas{
     margin: 0;
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;

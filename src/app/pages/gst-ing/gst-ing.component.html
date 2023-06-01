@@ -1,5 +1,5 @@
 <div class="layout">
-  <div>
+  <div class="selectMonth">
     <mat-form-field appearance="fill" class="datepicker-field">
       <mat-label>Selecciona el més</mat-label>
       <mat-select
@@ -15,68 +15,15 @@
     </mat-form-field>
   </div>
   <div>
-  <app-grafica-mes
-  [pruebaInput]="pruebaInput"
-  ></app-grafica-mes>
-</div>
-<div>
-  <app-grafica-tipo
-  [pruebaInput]="pruebaInput"
-  ></app-grafica-tipo>
-</div>
-  
-  <div>
-    <div class="title">
-      <p class="p">Total año </p>  
-    </div>
-    <canvas
-      baseChart
-      class="chart"
-      [data]="barChartData"
-      [type]="barChartType"
-      [labels]="barChartLabels"
-      [options]="barChartOptions"
-      width="200"
-      height="200"
-    >
-    </canvas>
+    <app-grafica-mes [pruebaInput]="pruebaInput"></app-grafica-mes>
   </div>
-  <!-- <div *ngIf="sumaG && sumaIngreso; else notDatos">
-    <div class="title">
-      <p class="p">Gasto Mes {{selectedMonth}}</p>  
-    </div>
-    
-    <canvas
-      baseChart
-      class="chart"
-      [data]="barChartData"
-      [type]="barChartType"
-      [labels]="barChartLabels"
-      [options]="barChartOptions"
-      width="200"
-      height="200"
-    >
-    </canvas>
-  </div> -->
+  <div>
+    <app-grafica-tipo [pruebaInput]="pruebaInput"></app-grafica-tipo>
+  </div>
+  <div>
+    <app-grafica-anio [pruebaInput]="pruebaInput"> </app-grafica-anio>
+  </div>
   <ng-template #notDatos>
     <h3>No hay datos disponibles.</h3>
-  </ng-template>
- 
-  <!-- <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa && sumaGastoMesPersonal && sumaGastoMesMoto">
-    <div class="title">
-      <p class="p">Detalle Mes {{selectedMonth}}</p>  
-    </div>
-    <canvas
-      baseChart
-      class="chart"
-      [data]="barChartData2"
-      [type]="barChartType2"
-      [labels]="barChartLabels2"
-      [options]="barChartOptions"
-      width="200"
-      height="200"
-    >
-    </canvas>
-  </div> -->
-  
+  </ng-template> 
 </div>

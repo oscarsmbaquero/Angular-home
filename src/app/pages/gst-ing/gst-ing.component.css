@@ -1,35 +1,44 @@
 .layout {
-    display: flex;
-    justify-content: center; /* centra los elementos horizontalmente */
-    flex-wrap: wrap; /* envuelve los elementos en una nueva fila cuando el contenedor desborda */
-    align-items: center;
-    width: 80%;
-  }
+  display: flex;
+  justify-content: center; /* centra los elementos horizontalmente */
+  flex-wrap: wrap; /* envuelve los elementos en una nueva fila cuando el contenedor desborda */
+  align-items: center;
   
+  /* width: 80%; */
+}
+
+.layout > div {
+  flex-basis: 100%; /* hace que cada elemento ocupe el 50% del ancho del contenedor */
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  /* cambia a un diseño de columna en dispositivos móviles */
+  .layout {
+    flex-direction: column; /* apila los elementos verticalmente */
+    align-items: center; /* centra los elementos verticalmente */
+    min-height: 80vh;
+  }
+
   .layout > div {
-    flex-basis: 50%; /* hace que cada elemento ocupe el 50% del ancho del contenedor */
-    
+    flex-basis: 100%; /* hace que cada elemento ocupe el 100% del ancho del contenedor */
+    margin-bottom: 20px; /* agrega un espacio vertical entre los elementos */
   }
-  
-  @media (max-width: 600px) {
-    /* cambia a un diseño de columna en dispositivos móviles */
-    .layout {
-      flex-direction: column; /* apila los elementos verticalmente */
-      align-items: center; /* centra los elementos verticalmente */
-      min-height: 100vh;
-    }
-    
-    .layout > div {
-      flex-basis: 100%; /* hace que cada elemento ocupe el 100% del ancho del contenedor */
-      margin-bottom: 20px; /* agrega un espacio vertical entre los elementos */
-    }
-  }
-  .title{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .p{
-    color:red;
-    font-weight: bold;
-  }
+}
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p {
+  color: red;
+  font-weight: bold;
+}
+.selectMonth {
+  padding: 20px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; */
+}

@@ -1,1 +1,20 @@
-<p>grafica-anio works!</p>
+
+<div class="graficas">
+  <div>
+    <div class="title">
+      <p class="p">Total Año</p>
+    </div>
+    <canvas
+      baseChart
+      class="chart"
+      [data]="barChartData"
+      [type]="barChartType"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      width="200"
+      height="200"
+    >
+    </canvas>
+  </div>
+</div>
+

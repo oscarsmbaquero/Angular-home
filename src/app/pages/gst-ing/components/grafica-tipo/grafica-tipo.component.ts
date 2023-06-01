@@ -116,7 +116,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesPersonal[i].importe;
       }
       this.sumaGastoMesPersonal = suma;
-      this.getPorcentaje(this.sumaGastoMesPersonal, 'personal');
+      //this.getPorcentaje(this.sumaGastoMesPersonal, 'personal');
       // this.gastoMesPersonalTotal.next(this.sumaGastoMesPersonal);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -136,7 +136,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesMoto[i].importe;
       }
       this.sumaGastoMesMoto = suma;
-      this.getPorcentaje(this.sumaGastoMesMoto, 'moto');
+      //this.getPorcentaje(this.sumaGastoMesMoto, 'moto');
       // this.gastoMesMotoTotal.next(this.sumaGastoMesMoto);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -156,7 +156,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesCasa[i].importe;
       }
       this.sumaGastoMesCasa = suma;
-      this.getPorcentaje(this.sumaGastoMesCasa, 'casa');
+      //this.getPorcentaje(this.sumaGastoMesCasa, 'casa');
       // this.gastoMesCasaTotal.next(this.sumaGastoMesCasa);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -176,7 +176,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesSua[i].importe;
       }
       this.sumaGastoMesSua = suma;
-      this.getPorcentaje(this.sumaGastoMesSua, 'sua');
+      //this.getPorcentaje(this.sumaGastoMesSua, 'sua');
       // this.gastoMesSuaTotal.next(this.sumaGastoMesSua);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -198,7 +198,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesCoche[i].importe;
       }
       this.sumaGastoMesCoche = suma;
-      this.getPorcentaje(this.sumaGastoMesCoche, 'coche');
+      //this.getPorcentaje(this.sumaGastoMesCoche, 'coche');
       // this.gastoMesCocheTotal.next(this.sumaGastoMesCoche);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -218,7 +218,7 @@ export class GraficaTipoComponent {
         suma += this.gastoMesOtro[i].importe;
       }
       this.sumaGastoMesOtro = suma;
-      this.getPorcentaje(this.sumaGastoMesOtro, 'otro');
+      //this.getPorcentaje(this.sumaGastoMesOtro, 'otro');
       // this.gastoMesOtroTotal.next(this.sumaGastoMesOtro);
       this.updateChartDataTipo(
         this.sumaGastoMesPersonal,
@@ -298,40 +298,40 @@ export class GraficaTipoComponent {
     },
   };
 resultado: number=0;
-  getPorcentaje(suma: number, nameSuma: string) {
+  // getPorcentaje(suma: number, nameSuma: string) {
     
-    switch (nameSuma) {
-      case 'personal':
-        console.log(suma, 'personal');
-        this.importeGastoPersonal= suma
-        this.totalSuma+=suma;
-        break;
-      case 'moto':
-        console.log(suma,'motosss');
-        this.totalSuma+=suma;
-      break;
-      case 'sua':
-        console.log(suma,'sua');
-        this.totalSuma+=suma;
-      break;
-      case 'coche':
-        console.log(suma,'coche')
-        this.totalSuma+=suma;
-      break;
-      case 'otro':
-        console.log(suma,'otro')
-        this.totalSuma+=suma;
-      break;
-      case 'casa':
-        console.log(suma,'casa');
-        this.totalSuma+=suma;
-      break;      
-      default:        
-      break;
-    }
+    // switch (nameSuma) {
+    //   case 'personal':
+    //     console.log(suma, 'pesonal')
+    //     this.importeGastoPersonal= suma
+    //     this.totalSuma+=suma;
+    //     break;
+    //   case 'moto':
+    //     console.log(suma,'motosss');
+    //     this.totalSuma+=suma;
+    //   break;
+    //   case 'sua':
+    //     console.log(suma,'sua');
+    //     this.totalSuma+=suma;
+    //   break;
+    //   case 'coche':
+    //     console.log(suma,'coche')
+    //     this.totalSuma+=suma;
+    //   break;
+    //   case 'otro':
+    //     console.log(suma,'otro')
+    //     this.totalSuma+=suma;
+    //   break;
+    //   case 'casa':
+    //     console.log(suma,'casa');
+    //     this.totalSuma+=suma;
+    //   break;      
+    //   default:        
+    //   break;
+    //}
     
-    if(this.importeGastoPersonal)
-    this.resultado = this.importeGastoPersonal*100/this.totalSuma;
-    console.log(this.resultado,334)
-  }
+    // if(this.importeGastoPersonal)
+    // this.resultado = this.importeGastoPersonal*100/this.totalSuma;
+    // console.log(this.resultado,334)
+  //}
 }

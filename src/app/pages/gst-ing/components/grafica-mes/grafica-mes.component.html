@@ -1,8 +1,8 @@
-<div *ngIf="sumaGastos && sumaIngreso">
+<div class="graficas">
+  <div *ngIf="sumaGastos && sumaIngreso">
     <div class="title">
-      <p class="p">Gasto Mes {{pruebaInput}}</p>  
+      <p class="p">Gasto Mes {{ pruebaInput }}</p>
     </div>
-    
     <canvas
       baseChart
       class="chart"
@@ -15,3 +15,4 @@
     >
     </canvas>
   </div>
+</div>
