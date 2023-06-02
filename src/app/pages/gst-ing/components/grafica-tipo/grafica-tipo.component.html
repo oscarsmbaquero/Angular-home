@@ -1,5 +1,5 @@
 <div class="graficas">
-  <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa">
+  <div *ngIf=" sumaGastoMesCasa">
     <div class="title">
       <p class="p">Detalle Mes {{ pruebaInput }}</p>
     </div>
@@ -16,7 +16,7 @@
     </canvas>
   </div>
   <!--grafica doughnut-->
-  <div *ngIf="sumaGastoMesPersonal && sumaGastoMesCasa">
+  <div *ngIf=" sumaGastoMesCasa">
     <div class="title">
       <p class="p">Detalle Mes {{ pruebaInput }}</p>
     </div>

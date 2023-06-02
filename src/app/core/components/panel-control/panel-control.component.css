@@ -1,11 +1,12 @@
 
 .panel-container {
-  /* display: flex;
-  justify-content: space-between; */
+  display: flex;
+  
   background-color:transparent;
   padding: 10px; 
   align-items: center;
-  border-radius: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .panel-item {
@@ -21,7 +22,24 @@
 
   } */
   .button{    
-    margin-left: 100px;
+    display: inline-block;
+    padding: 6px 6px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    
+    
+    color: #160303;
+    border-radius: 24px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.my-button:hover {
+    background-color: #45a049;
+    
   }
   .info{
     text-align: center;
