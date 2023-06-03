@@ -32,11 +32,17 @@
    z-index: 100;
     position: fixed;
     border:none;
-    bottom: 10px;
+    bottom: 50px;
     right: 10px;
     cursor: pointer;
     color: #000;
-    background: #eee;
-    border-radius: 28px;
-    padding: 5px 10px;
+    background-color: blue;
+    /* background: #eee; */
+    border-radius: 50%;
+    padding-top: 6px;
+    padding-right: 8px;
+    
+}
+.red-icon {
+  color: rgb(237, 189, 15);
 }

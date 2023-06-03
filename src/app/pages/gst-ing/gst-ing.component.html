@@ -14,16 +14,18 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div>
-    <app-grafica-mes [pruebaInput]="pruebaInput"></app-grafica-mes>
+  <!-- <div class="grafics"> -->
+    <div>
+      <app-grafica-mes [pruebaInput]="pruebaInput"></app-grafica-mes>
+    </div>
+    <div>
+      <app-grafica-tipo [pruebaInput]="pruebaInput"></app-grafica-tipo>
+    </div>
+    <div>
+      <app-grafica-anio [pruebaInput]="pruebaInput"> </app-grafica-anio>
+    </div>
+    <ng-template #notDatos>
+      <h3>No hay datos disponibles.</h3>
+    </ng-template>
   </div>
-  <div>
-    <app-grafica-tipo [pruebaInput]="pruebaInput"></app-grafica-tipo>
-  </div>
-  <div>
-    <app-grafica-anio [pruebaInput]="pruebaInput"> </app-grafica-anio>
-  </div>
-  <ng-template #notDatos>
-    <h3>No hay datos disponibles.</h3>
-  </ng-template> 
-</div>
+<!-- </div> -->

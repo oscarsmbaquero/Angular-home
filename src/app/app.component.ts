@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -8,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'home';
+
+  @Output() openmodal = new EventEmitter<string>();
+
+
+
+  openModal(){
+    this.openmodal.emit('Hola')
+    console.log('Entro')
+  }
 }
