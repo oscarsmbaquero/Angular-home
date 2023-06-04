@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ModalService } from '../../services/modal/modal.service';
-import { GastosService } from '../../services/gastos/gastos.service';
-import { IngresosService } from '../../services/ingresos/ingresos.service';
-import { IGasto } from '../../services/models/gastos.models';
-import { Iingreso } from '../../services/models/ingreso.models';
+import { ModalService } from '../../../core/services/modal/modal.service';
+import { GastosService } from '../../../core/services/gastos/gastos.service';
+import { IngresosService } from '../../../core/services/ingresos/ingresos.service';
+import { IGasto } from '../../../core/services/models/gastos.models';
+import { Iingreso } from '../../../core/services/models/ingreso.models';
 
 @Component({
   selector: 'app-modal',

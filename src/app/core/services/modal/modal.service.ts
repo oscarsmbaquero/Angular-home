@@ -1,4 +1,4 @@
-import { ModalComponent } from './../../components/modal/modal.component';
+import { ModalComponent } from '../../../shared/components/modal/modal.component';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 

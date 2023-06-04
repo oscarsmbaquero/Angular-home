@@ -28,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     IngresosRoutingModule,
@@ -42,7 +43,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    SharedModule
+    
   ],
    providers: [
     {

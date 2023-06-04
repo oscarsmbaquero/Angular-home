@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+//import { SharedModule } from './shared/shared.module';
 //Moment 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -18,6 +19,7 @@ import { PanelControlComponent } from './core/components/panel-control/panel-con
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material/button';//cambiar de sitio
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './shared/shared.module';
 
 
 import { MaterialModule } from './material.module';
@@ -31,6 +33,7 @@ import { MaterialModule } from './material.module';
   ],
   imports: [
     CoreModule,
+    SharedModule,
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,6 +43,7 @@ import { MaterialModule } from './material.module';
     MatMomentDateModule,
     HttpClientModule,
     MatDialogModule,
+    //SharedModule,
     ModalModule.forRoot()
     
   ],
