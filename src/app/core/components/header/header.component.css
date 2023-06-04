@@ -36,6 +36,9 @@
   font-size: 0.8em;  
   margin-right: 10px;
 }
+.badge{
+  margin-left: 4px;
+}
 /* .navbar-toggler:focus,
 .navbar-toggler:hover {
   background-color: white;

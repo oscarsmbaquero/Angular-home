@@ -27,7 +27,9 @@
         <a class="nav-link" [routerLink]="['/gsvsin']" data-toggle="collapse" data-target=".navbar-collapse.show"><span class="text-white">Gráficas</span></a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/tareas']" data-toggle="collapse" data-target=".navbar-collapse.show"><span class="text-white">Tareas</span></a>
+        <a class="nav-link" [routerLink]="['/tareas']" data-toggle="collapse" data-target=".navbar-collapse.show"><span class="text-white">Tareas </span>
+          <mat-icon matBadge="{{numeroTareas}}" matBadgeColor="warn" class="badge"></mat-icon>
+        </a>        
       </li>
       <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/compra']" data-toggle="collapse" data-target=".navbar-collapse.show">Compra</a>
