@@ -19,12 +19,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TodosIngresosComponent } from './components/todos/todos.component';
 
 @NgModule({
   declarations: [
     IngresosComponent,
     AnadirComponent,
-    MostrarComponent
+    MostrarComponent,
+    TodosIngresosComponent,
   ],
   imports: [
     CommonModule,

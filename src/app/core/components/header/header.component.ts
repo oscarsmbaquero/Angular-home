@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TareasService } from '../../services/tareas/tareas.service';
 import { ITareas } from '../../services/models/tareas.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent {
   numeroTareas:number=0;
 
   constructor(
-    private tareasService:TareasService
+    private tareasService:TareasService,
+    private router: Router
   ){ }
 
   ngOnInit(){
@@ -49,5 +51,6 @@ export class HeaderComponent {
   logout(){
     //this.autorizacionService.logout()
   }
+  
 
 }
