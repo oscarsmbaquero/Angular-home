@@ -31,6 +31,7 @@ export class ModalComponent {
     /**
      * flag para guardar la diferencia
      */
+    sumaNextMonth: number =0;
     diferencia:number=0;
     /**
      * flag para guardar el mes actual
@@ -39,6 +40,8 @@ export class ModalComponent {
 
     gastoMayor:boolean=false;
     ingresoMayor:boolean=false;
+
+    gastoNextMonth: IGasto[]=[];
   constructor(
     private modalService: ModalService,
     private gastosService: GastosService,
@@ -69,7 +72,6 @@ export class ModalComponent {
         suma += this.ingresos[i].importe;
       }
     this.sumaIngreso = suma;
-    console.log(this.sumaIngreso,60)
     });
   }
   calcularDiferencia(){
@@ -78,7 +80,9 @@ export class ModalComponent {
     }else{
       this.diferencia= this.sumaIngreso - this.sumaG
     }
+    this.gastoMesproximo();
     return this.diferencia;
+
   }
 
   closeModal() {
@@ -89,6 +93,20 @@ export class ModalComponent {
     const fechaActual = new Date();
     const nombreMes = fechaActual.toLocaleDateString('es-ES', { month: 'long' });
     this.mesActual = nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1);
+    
+  }
+  gastoMesproximo(){
+    this.gastosService.getGastosMesSiguiente().subscribe((element)=>{
+      console.log(element)
+      this.gastoNextMonth =element;
+      console.log(this.gastoNextMonth,101)
+      let suma = 0;
+      for (let i = 0; i < this.gastoNextMonth.length; i++) {
+        suma += this.gastoNextMonth[i].importe;
+      }
+    this.sumaNextMonth = suma;
+    console.log(this.sumaNextMonth)
+    })
     
   }
 

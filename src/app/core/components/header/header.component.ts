@@ -32,11 +32,8 @@ export class HeaderComponent {
       const tareasFiltradas = tareas.filter((tarea) => {
         const mesTarea = new Date(tarea.fecha).getMonth();
         return mesTarea === mesActual;
-      });
-  
+      });  
       this.numeroTareas = tareasFiltradas.length;
-      console.log('Número de tareas en el mes actual:',this.numeroTareas);
-      // O haz algo más con el número de tareas filtradas
     });
   }
 
@@ -49,7 +46,7 @@ export class HeaderComponent {
   loggedUser:any = null;
 
   logout(){
-    //this.autorizacionService.logout()
+    
   }
   
 

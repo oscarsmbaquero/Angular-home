@@ -17,6 +17,14 @@
         >
       </h2>
     </div>
+    <div class="variable">
+      <h2>
+        <span style="color: rgb(48, 207, 207)">Tarjeta<br/></span>&nbsp;&nbsp;<span
+          style="color: rgb(229, 223, 224)"
+          >{{ sumaNextMonth }}&nbsp;€</span
+        >
+      </h2>
+    </div>
     <button mat-raised-button color="warn" (click)="calcularDiferencia()">
       Diferencia
     </button>
@@ -31,6 +39,9 @@
       <h2>
         <span style="color: azure"></span>&nbsp;&nbsp;<span>{{ diferencia }}&nbsp;€</span>
       </h2>
+      <!-- <h2>
+        <span style="color: azure"></span>&nbsp;&nbsp;<span>{{ sumaNextMonth }}&nbsp;€</span>
+      </h2> -->
     </div>
   </div>
 </div>

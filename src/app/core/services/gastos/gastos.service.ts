@@ -78,5 +78,22 @@ export class GastosService implements OnInit{
     console.log(id,22)
     return this.httpClient.delete<IGasto>( `${environment.apiUrl}gastos/delete/${id}`);
   }
+  /**
+   * Calcula gastos del mes siguiente al actual
+   * @returns 
+   */
+  public getGastosMesSiguiente(): Observable<IGasto[]> {
+    const today = new Date();
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+    const firstDayOfNextMonth = new Date(nextMonth.getFullYear(), nextMonth.getMonth(), 1);
+    const lastDayOfNextMonth = new Date(nextMonth.getFullYear(), nextMonth.getMonth() + 1, 0);
+  
+    return this.httpClient.get<IGasto[]>(`${environment.apiUrl}gastos`).pipe(
+      map(gastos => gastos.filter(gasto => {
+        const gastoDate = new Date(gasto.fecha);
+        return gastoDate.getTime() >= firstDayOfNextMonth.getTime() && gastoDate.getTime() <= lastDayOfNextMonth.getTime();
+      }))
+    );
+  }
 
 }
