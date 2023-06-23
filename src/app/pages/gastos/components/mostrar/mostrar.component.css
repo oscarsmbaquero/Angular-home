@@ -19,7 +19,10 @@
     
   }
   .custom-text{
-    color:rgb(227, 196, 40);
+    color:rgb(231, 23, 23);
+    font-weight: bold;
+  }
+  .text{
     font-weight: bold;
   }
 /* .icono-moto {
