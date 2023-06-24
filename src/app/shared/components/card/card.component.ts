@@ -9,6 +9,7 @@ export class CardComponent {
   showDeleteButton = false;
   showEditButton = false;
   startX: number=0;
+  isMoving = false;
 
   onMouseMove(event: MouseEvent): void {
     const card = event.currentTarget as HTMLElement;
@@ -29,22 +30,28 @@ export class CardComponent {
   }
   onTouchStart(event: TouchEvent): void {
     this.startX = event.touches[0].clientX;
+    this.isMoving = true;
   }
 
   onTouchMove(event: TouchEvent): void {
+    if (!this.isMoving) {
+      return;
+    }
+
     const card = event.currentTarget as HTMLElement;
     const currentX = event.touches[0].clientX;
     const deltaX = currentX - this.startX;
 
     if (deltaX < -50) {
       this.showDeleteButton = true;
-    } else {
+    } else if (deltaX > 50) {
       this.showDeleteButton = false;
     }
   }
+  
 
   onTouchEnd(): void {
-    this.showDeleteButton = false;
+    this.isMoving = false;
   }
 
 }

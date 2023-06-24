@@ -2,11 +2,10 @@
     width: 100%;
     height: 200px;
     border: 1px solid #ccc;
-    padding: 10px;
-    overflow-x: hidden;
-    position: relative;
-    transition: transform 0.3s;
-    background-color: rgb(190, 182, 182);
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
   }
   
   .card-content {
@@ -14,31 +13,48 @@
     
   }
   
-  .delete-button {
+  .card-buttons {
     position: absolute;
-    top: 0;
-    right: -50px;
-    width: 50px;
-    height: 50%;
-    background-color: red;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 5px;
+  }
+  
+  .delete-button{
+    background-color: rgb(186, 17, 17);
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    transition: right 0.3s;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-left: 5px;
+    top:50%;
   }
   .edit-button {
-    position: absolute;
-    bottom: 0;
-    right: -50px;
-    width: 50px;
-    height: 50%;
-    background-color: rgb(228, 215, 23);
+    background-color: rgb(176, 225, 28);
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    transition: right 0.3s;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-left: 5px;
+    bottom:50%;
+  }
+  
+  .delete-button.show,
+  .edit-button.show {
+    opacity: 1;
+  }
+  
+  .delete-button:hover,
+  .edit-button:hover {
+    background-color: darkgray;
   }
   
   .delete-button.show {
