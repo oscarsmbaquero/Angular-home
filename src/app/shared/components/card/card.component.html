@@ -16,7 +16,9 @@
 </div> -->
 <div class="card" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd()">
     <div class="card-content">
-      <!-- Contenido de la tarjeta -->
+      {{ingreso.fecha}}
+      {{ingreso.descripcion}}
+      {{ingreso.importe}}
     </div>
     <div class="card-buttons">
       <button class="delete-button" [ngClass]="{'show': showDeleteButton}">Eliminar</button>

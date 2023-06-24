@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Iingreso } from 'src/app/core/services/models/ingreso.models';
 
 @Component({
   selector: 'app-card',
@@ -10,6 +11,8 @@ export class CardComponent {
   showEditButton = false;
   startX: number=0;
   isMoving = false;
+
+  @Input() ingreso:any;
 
   onMouseMove(event: MouseEvent): void {
     const card = event.currentTarget as HTMLElement;
